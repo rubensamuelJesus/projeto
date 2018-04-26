@@ -15,15 +15,17 @@
     <!-- Bootstrap core CSS     -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 
+    <!-- Bootstrap core CSS     -->
+    <!-- Bootstrap core CSS     -->
+    <!-- Bootstrap core CSS     -->
+    
+
 
     <!--  Paper Dashboard core CSS    -->
     <link href="css/paper-dashboard.css" rel="stylesheet"/>
 
     <link href="https://data.jsdelivr.com/v1/package/npm/paper-dashboard/badge" rel="stylesheet"/>
     <link href="css/paper-dashboard.css" rel="stylesheet"/>
-
-
-
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="css/demo.css" rel="stylesheet" />
