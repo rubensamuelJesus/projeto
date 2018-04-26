@@ -15,8 +15,6 @@
     <!-- Bootstrap core CSS     -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Animation library for notifications   -->
-    <!--<link href="css/animate.min.css" rel="stylesheet"/>
 
     <!--  Paper Dashboard core CSS    -->
     <link href="css/paper-dashboard.css" rel="stylesheet"/>
