@@ -13,7 +13,7 @@
 
 
     <!-- Bootstrap core CSS     -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Bootstrap core CSS     -->
     <!-- Bootstrap core CSS     -->
