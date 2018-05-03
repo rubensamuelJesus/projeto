@@ -30,7 +30,7 @@
 <body>
   
   <div class="limiter">
-    <div class="container-login100" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/slider-2.jpg');">
+    <div class="container-login100">
       <div class="wrap-login100">
         <form class="login100-form validate-form">
           <span class="login100-form-logo">
