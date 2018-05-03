@@ -13,7 +13,7 @@
 
 
     <!-- Bootstrap core CSS     -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Bootstrap core CSS     -->
     <!-- Bootstrap core CSS     -->
@@ -28,7 +28,7 @@
     <link href="css/paper-dashboard.css" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="css/demo.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/css/demo.css" rel="stylesheet" />
 
 
     <!--  Fonts and icons     -->
@@ -150,16 +150,16 @@
 
     <!--   Core JS Files   -->
     <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="js/bootstrap-checkbox-radio.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/1.0.1/awesome-bootstrap-checkbox.min.css"></script>
 
 	<!--  Charts Plugin -->
-	<script src="js/chartist.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
-    <script src="js/bootstrap-notify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"></script>
 
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
@@ -168,6 +168,6 @@
 	<script src="js/paper-dashboard.js"></script>
 
 	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="js/demo.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/assets/js/demo.js"></script>
 
 </html>
