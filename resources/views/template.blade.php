@@ -100,8 +100,14 @@
                         @if (!Auth::check())
                         <li>
                             <a href="login">
-                                <i class="ti-user"></i>
+                                <i class="ti-lock"></i>
                                 <p>Login</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="register">
+                                <i class="ti-user"></i>
+                                <p>Register</p>
                             </a>
                         </li>
                         @endif
