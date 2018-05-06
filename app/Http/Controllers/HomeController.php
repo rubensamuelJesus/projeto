@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('index');
     }
+    
+    protected function xa(array $data)
+    {
+        return $results = DB::select('select count(id)from users;');
+
+    }
 }
