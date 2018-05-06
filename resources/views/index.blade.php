@@ -11,12 +11,10 @@
                     <div class="header">
                         <form method="GET" action="totalusers">
                         <h4>Total Registered Users: </h4>
+                        <p>Users: {{$total_users}} registered.  </p>  
                     </div>
                     <div class="header">
                         <h4 >Total Accounts Created:</h4>
-                        @foreach($user as $users)
-                            <p>{{$users->name}}</p>  
-                        @endforeach
                     </div>
                     <div class="header">
                         <h4 >Movements Registered: </h4>

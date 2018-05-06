@@ -18,8 +18,8 @@ Route::view('icons', 'icons');
 Route::view('estatistics', 'estatistics');
 Route::view('register', 'register');*/
 
-Route::get('/','HomeController@index')->name('/');
-Route::get('/', 'Xa\HomeController@totalusers')->name('index');
+Route::get('index','HomeController@index')->name('/');
+
 //Login routes
 
 Route::get('login', 'Auth\LoginController@showLoginForm');
@@ -31,9 +31,6 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 // Logout Routes...
 Route::post('logout','Auth\LoginController@logout')->name('logout');
-
-//Settings Routes...(XA)
-//Routes::post('settings','Auth\SettingsController@settings');
 
 //Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 //Route::post('login', 'Auth\LoginController@login');
