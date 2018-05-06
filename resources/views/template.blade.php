@@ -15,12 +15,6 @@
     <!-- Bootstrap core CSS     -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Bootstrap core CSS     -->
-    <!-- Bootstrap core CSS     -->
-    <!-- Bootstrap core CSS     -->
-    
-
-
     <!--  Paper Dashboard core CSS    -->
     <link href="css/paper-dashboard.css" rel="stylesheet"/>
 
@@ -55,12 +49,6 @@
                         <p>Finances</p>
                     </a>
                 </li>
-                <li class="">
-                    <a href="/estatistics" class="topicos">
-                        <i class="ti-bar-chart-alt"></i>
-                        <p>Estatistics</p>
-                    </a>
-                </li>
                 <li>
                     <a href="user" class="topicos">
                         <i class="ti-user"></i>
@@ -68,9 +56,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="table" class="topicos">
+                    <a href="accounts" class="topicos">
                         <i class="ti-view-list-alt"></i>
-                        <p>Table List</p>
+                        <p>Accounts</p>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/estatistics" class="topicos">
+                        <i class="ti-bar-chart-alt"></i>
+                        <p>Estatistics</p>
                     </a>
                 </li>
                 <li>
