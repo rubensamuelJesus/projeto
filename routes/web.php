@@ -18,7 +18,8 @@ Route::view('icons', 'icons');
 Route::view('estatistics', 'estatistics');
 Route::view('register', 'register');*/
 
-Route::get('index','HomeController@index')->name('/');
+Route::get('/','HomeController@index')->name('/');
+Route::get('/table','HomeController@index')->name('/');
 
 //Login routes
 

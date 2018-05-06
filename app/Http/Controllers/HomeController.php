@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Home::all();
-        return view('index',compact("user"));
+        $total_users = Home::count();
+        return view('index',compact("total_users"));
     }
 
     protected function totalusers()
