@@ -27,11 +27,4 @@ class HomeController extends Controller
         $total_users = Home::count();
         return view('index',compact("total_users"));
     }
-
-    protected function totalusers()
-    {
-        $results = DB::select('select count(id)from users;');
-
-        return view('index')->with($results);
-    }
 }
