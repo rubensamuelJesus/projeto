@@ -19,7 +19,7 @@ Route::view('estatistics', 'estatistics');
 Route::view('register', 'register');*/
 
 Route::get('/','HomeController@index')->name('/');
-
+Route::get('/', 'Xa\HomeController@totalusers')->name('index');
 //Login routes
 
 Route::get('login', 'Auth\LoginController@showLoginForm');

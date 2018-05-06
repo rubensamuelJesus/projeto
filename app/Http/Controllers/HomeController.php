@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
@@ -25,10 +25,11 @@ class HomeController extends Controller
     {
         return view('index');
     }
-    
-    protected function xa(array $data)
-    {
-        return $results = DB::select('select count(id)from users;');
 
+    protected function totalusers()
+    {
+        $results = DB::select('select count(id)from users;');
+
+        return view('index')->with($results);
     }
 }
