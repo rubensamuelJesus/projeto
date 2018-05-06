@@ -79,6 +79,13 @@
                         <p>Icons</p>
                     </a>
                 </li>
+
+                <li>
+                    <a href="about"class="topicos">
+                        <i class="ti-help-alt"></i>
+                        <p>About Us</p>
+                    </a>
+                </li>
             </ul>
     	</div>
     </div>

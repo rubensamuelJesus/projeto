@@ -58,6 +58,14 @@ class RegisterController extends Controller
         ]);
     }
 
+    protected function xa(array $data)
+    {
+        return $results = DB::select('select count(id)from users;');
+
+    }
+
+            
+
     /**
      * Create a new user instance after a valid registration.
      *

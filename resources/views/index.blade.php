@@ -5,8 +5,21 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+                    <!--<div class="header">
+                        <h4 class="title">Total Registered Users:</h4>
+                    </div>-->
+                    @if (Auth::check())
                     <div class="header">
-                        <h4 class="title">Personal Finances Assistant</h4>
+                        <<?php $results = DB::select('select count(id)from users;') ?>
+                        <!--<h4>Total Registered Users: <?php  ($results)?> </h4>-->
+                        <h4>Total Registered Users: {{auth()->user()->name}} </h4>
+                    </div>
+                    @endif
+                    <div class="header">
+                        <h4 >Total Accounts Created:</h4>
+                    </div>
+                    <div class="header">
+                        <h4 >Movements Registered: </h4>
                     </div>
                     <div class="content">
                         <div id="chartHours" class="ct-chart"></div>
