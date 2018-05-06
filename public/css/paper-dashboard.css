@@ -151,10 +151,13 @@ strong {
 body {
   color: #66615b;
   font-size: 14px;
-  font-family: 'Muli', Arial, sans-serif; }
+  font-family: 'Muli', Arial, sans-serif; 
+  padding-top: 0px !important;
+}
   body .wrapper {
     min-height: 100vh;
-    position: relative; }
+    position: relative; 
+  }
 
 a {
   color: #68B3C8; }
