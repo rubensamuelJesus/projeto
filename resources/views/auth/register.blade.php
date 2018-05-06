@@ -34,12 +34,11 @@
     <input class="input100" type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone number">
     <span class="focus-input100" data-placeholder="&#xf2b6;"></span>
   </div>
-  
+
   <div class="wrap-input100 validate-input">
     <input class="input100" id="tessssss" type="file" value="{{ old('profile_photo') }}" name="profile_photo" placeholder="Photo">
     <span class="focus-input100" data-placeholder="&#xf223;"></span>
   </div>
-  
   @if($errors->all())
     @foreach($errors->all() as $error)
       <span class="input100">{{$error}}</span>

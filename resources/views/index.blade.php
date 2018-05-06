@@ -10,14 +10,16 @@
                     </div>-->
                     <div class="header">
                         <form method="GET" action="totalusers">
-                        <h4>Total Registered Users: </h4>
+                        <h4>Total Registered Users: Users: {{$total_users}} </h4>
                         <p>Users: {{$total_users}} registered.  </p>  
                     </div>
                     <div class="header">
                         <h4 >Total Accounts Created:</h4>
+                        <p>Accounts: xx registered.  </p> 
                     </div>
                     <div class="header">
                         <h4 >Movements Registered: </h4>
+                        <p>Movements: xx  registered.  </p>
                     </div>
                     <div class="content">
                         <div id="chartHours" class="ct-chart"></div>
