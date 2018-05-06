@@ -126,10 +126,7 @@
                               </a>
                               <ul class="dropdown-menu">
                                 <li><a href="#">Profile</a></li>
-                                <form method="POST" action="{{route('logout')}}">
-                                    {{csrf_field()}}
-                                    <button class="btn">Logout</button>
-                                </form>
+
                               </ul>
                         </li>
                         <li>
