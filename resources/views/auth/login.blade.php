@@ -3,7 +3,7 @@
 <form method="POST" action= "{{route('login')}}" class="login100-form validate-form">
   {{csrf_field()}}
   <span class="login100-form-logo">
-  <i class="zmdi zmdi-landscape"></i>
+    <i class="zmdi zmdi-landscape"></i>
   </span>
 
   <span class="login100-form-title p-b-34 p-t-27">Log in</span>
@@ -25,12 +25,16 @@
 
   <div class="container-login100-form-btn">
     <a class="login100-form-btn" href="/">Back</a>
-    <button class="login100-form-btn">Loginasd</button>
+    <button class="login100-form-btn">Login</button>
   </div>
 
   <div class="text-center p-t-90">
     <span class="txt2">Not a member?</span>
     <a class="txt1" href="/register">Sign up now</a>
+  </div>
+
+  <div class="text-center p-t-5">
+    <a class="txt2" href="password/reset">Forget Password?</a>
   </div>
 </form>
 @endsection
