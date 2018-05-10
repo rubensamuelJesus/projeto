@@ -22,7 +22,6 @@ Route::get('/','HomeController@index')->name('/');
 Route::get('/table','HomeController@index')->name('/');
 
 //Login routes
-
 Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login','Auth\LoginController@login')->name('login');
 
@@ -30,6 +29,7 @@ Route::post('login','Auth\LoginController@login')->name('login');
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
 // Logout Routes...
 Route::post('logout','Auth\LoginController@logout')->name('logout');
 
