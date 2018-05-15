@@ -10,7 +10,7 @@
                     </div>-->
                     <div class="header">
                         <form method="GET" action="totalusers">
-                        <h4>Total Registered Users: Users: {{$total_users}} </h4>
+                        <h4>Total Registered Users: </h4>
                         <p>Users: {{$total_users}} registered.  </p>  
                     </div>
                     <div class="header">
