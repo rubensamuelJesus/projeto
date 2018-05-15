@@ -25,6 +25,10 @@ Route::get('/table','HomeController@index')->name('/');
 Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login','Auth\LoginController@login')->name('login');
 
+Route::get('user', 'UserController@index');
+Route::get('user/{user}',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
+Route::patch('user/{user}/update',  ['as' => 'users.update', 'uses' => 'UserController@update']);
+
 
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
