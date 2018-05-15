@@ -15,11 +15,11 @@
                     </div>
                     <div class="header">
                         <h4 >Total Accounts Created:</h4>
-                        <p>Accounts: xx registered.  </p> 
+                        <p>Accounts: {{$total_accounts}} registered.  </p> 
                     </div>
                     <div class="header">
                         <h4 >Movements Registered: </h4>
-                        <p>Movements: xx  registered.  </p>
+                        <p>Movements: {{$total_movements}}  registered.  </p>
                     </div>
                     <div class="content">
                         <div id="chartHours" class="ct-chart"></div>

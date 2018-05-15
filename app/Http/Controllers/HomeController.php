@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Home;
+use App\Account;
 class HomeController extends Controller
 {
     /**
@@ -25,6 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $total_users = Home::count();
-        return view('index',compact("total_users"));
+        $total_accounts = Account::count();
+        $total_movements = Account::count();
+        return view('index',compact("total_accounts","total_users","total_movements"));
     }
 }

@@ -10,7 +10,7 @@ class Home extends Model
 	protected $table = 'users';
 	//
 	// Overrides primary key
-	protected $primaryKey = 'product_code';
+	protected $primaryKey = 'id';
 	// Disables auto timestamps
 	public $timestamps = false;
 }

@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Account extends Model
+class Movement extends Model
 {
     // Overrides table name
-	protected $table = 'accounts';
+	protected $table = 'movements';
 	//
 	// Overrides primary key
 	protected $primaryKey = 'id';
