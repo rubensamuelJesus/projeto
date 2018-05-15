@@ -98,7 +98,7 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        @if (!Auth::check())
+                        @if (Auth::guest())
                         <li>
                             <a href="login">
                                 <i class="ti-lock"></i>
