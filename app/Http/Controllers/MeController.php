@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class MeController extends Controller
 {
@@ -17,15 +17,12 @@ class MeController extends Controller
         $this->middleware('auth');
     }
     
-    public function profile()
+    public function index()
     {
         $user = Auth::user();
         return view('me.profile', compact('user'));
     }
 
-    public function getProfileImage(){
-        return Storage::get($this->id.'/'.$this->id.'.jpg');
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -77,9 +74,23 @@ class MeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(User $user)
+    {/*
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'profile_photo' => 'required',
+            'phone' => 'required'
+        ]);
+
+        $user->name = request('name');
+        $user->email = request('email');
+        $user->profile_photo = request('profile_photo');
+        $user->phone = request('phone');
+        $user->save();
+
+        return back();*/
+
     }
 
     /**

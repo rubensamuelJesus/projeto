@@ -25,9 +25,12 @@ Route::get('/table','HomeController@index')->name('/');
 Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login','Auth\LoginController@login')->name('login');
 
-Route::resource('user', 'UserController');
 
-Route::get('me/profile', 'MeController@profile')->name('me.profile');
+//Route::get('me/profile', 'MeController@index')->name('me.profile');
+//Route::put('me/profile/{user}',  ['as' => 'me.update', 'uses' => 'MeController@update']);
+
+Route::resource('me/profile', 'MeController');
+
 
 
 

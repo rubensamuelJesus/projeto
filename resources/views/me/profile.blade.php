@@ -22,7 +22,9 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form method="post" action="{{route('me.update', $user->id)}}">
+                                    @crsf
+                                    @method('put')
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
