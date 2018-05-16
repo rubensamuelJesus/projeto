@@ -30,6 +30,9 @@ Route::get('me/profile', 'MeController@index')->name('me/profile');
 Route::post('me/profiles/{user}', 'MeController@update')->name('me/profiles');
 
 
+Route::get('profiles', 'ProfilesController@index')->name('profiles');
+
+
 
 
 

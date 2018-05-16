@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="accounts" class="topicos">
+                    <a href="/profiles" class="topicos">
                         <i class="ti-list"></i>
                         <p>Users</p>
                     </a>
@@ -128,22 +128,22 @@
                             </a>
                         </li>
                         @if (Auth::check())
-                        <li class="dropdown">
+                            <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<p>{{$user->name}}</p>
-									<b class="caret"></b>
+                                    <p>{{$user->name}}</p>
+                                    <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
                                 <li><a href="#">Profile</a></li>
 
                               </ul>
-                        </li>
-                        <li>
-                                <form method="POST" action="{{route('logout')}}">
-                                    {{csrf_field()}}
-                                    <button class="btn">Logout</button>
-                                </form>
-                        </li>
+                            </li>
+                            <li>
+                                    <form method="POST" action="{{route('logout')}}">
+                                        {{csrf_field()}}
+                                        <button class="btn">Logout</button>
+                                    </form>
+                            </li>
                         @endif
                     </ul>
 
