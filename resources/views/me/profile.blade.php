@@ -22,14 +22,12 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                                <form method="post" action="{{route('me.update', $user->id)}}">
-                                    @crsf
-                                    @method('put')
+                               {{Form::model($user, array('route' => array('me/profiles', $user), 'method' => 'post'))}}
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input type="text" class="form-control border-input" placeholder="Name" value="{{$user->name}}">
+                                                <input type="text" class="form-control border-input" placeholder="Name" name="name" value="{{$user->name}}">
                                             </div>
                                         </div>
                                     </div>
@@ -37,19 +35,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control border-input" placeholder="Email" value="{{$user->email}}">
+                                                <input type="email" class="form-control border-input" placeholder="Email" name="email"  value="{{$user->email}}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Phone number</label>
-                                                <input type="text" class="form-control border-input" placeholder="Username" value="{{$user->phone}}">
+                                                <input type="text" class="form-control border-input" placeholder="Username" name="phone" value="{{$user->phone}}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Photo</label>
-                                                <input type="file" class="form-control border-input" placeholder="Photo" value="{{$user->profile_photo}}">
+                                                <input type="file" class="form-control border-input" placeholder="Photo" name="profile_photo" value="{{$user->profile_photo}}">
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +55,7 @@
                                         <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
                                     </div>
                                     <div class="clearfix"></div>
-                                </form>
+                                {{Form::close()}}
                             </div>
                         </div>
                     </div>

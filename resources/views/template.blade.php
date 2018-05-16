@@ -53,9 +53,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('me.profile')}}" class="topicos">
+                    <a href="{{route('me/profile')}}" class="topicos">
                         <i class="ti-user"></i>
                         <p>User Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="accounts" class="topicos">
+                        <i class="ti-list"></i>
+                        <p>Users</p>
                     </a>
                 </li>
                 <li>

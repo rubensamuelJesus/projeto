@@ -26,10 +26,8 @@ Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login','Auth\LoginController@login')->name('login');
 
 
-Route::get('me.profile', 'MeController@index')->name('me.profile');
-Route::post('me.profile',  ['as' => 'me.update', 'uses' => 'MeController@update']);
-
-
+Route::get('me/profile', 'MeController@index')->name('me/profile');
+Route::post('me/profiles/{user}', 'MeController@update')->name('me/profiles');
 
 
 

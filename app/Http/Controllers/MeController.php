@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Http\Request;
 
 class MeController extends Controller
 {
@@ -20,7 +21,7 @@ class MeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('me.profile', compact('user'));
+        return view('me/profile', compact('user'));
     }
 
 
@@ -74,22 +75,15 @@ class MeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(User $user)
-    {/*
-        $this->validate(request(), [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'profile_photo' => 'required',
-            'phone' => 'required'
-        ]);
-
-        $user->name = request('name');
-        $user->email = request('email');
-        $user->profile_photo = request('profile_photo');
-        $user->phone = request('phone');
+    public function update(Request $request, User $user)
+    {
+        
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->profile_photo = $request->profile_photo;
+        $user->phone = $request->phone;
         $user->save();
-
-        return back();*/
+        return redirect()->back();
 
     }
 
