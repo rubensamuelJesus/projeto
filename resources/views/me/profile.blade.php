@@ -107,7 +107,7 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                                <form method="post" action="{{route('users.update', $user)}}">
+                                <form>
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
@@ -198,7 +198,5 @@ But that's the difference in our opinions.</textarea>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
 @endsection

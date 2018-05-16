@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\Auth as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -15,8 +15,8 @@ class User extends Authenticatable
      * @var array
      */
     
-    // Overrides table name
     protected $table = 'users';
+
 
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'profile_photo',

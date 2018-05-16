@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Http\Request;
+
 
 class UserController extends Controller
 {
@@ -12,16 +13,14 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(User $user)
     {
-        $user = User::users();
-        return view('user/index',compact("user"));
+        return view('user.index', compact('user'));
     }
 
-    public function edit(User $user)
+    public function edit()
     {   
-        $user = Auth::users();
-        return view('users.edit', compact('user'));
+        
     }
 
     public function update(User $user)

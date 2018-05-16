@@ -19,10 +19,12 @@
     <link href="css/paper-dashboard.css" rel="stylesheet"/>
 
     <link href="https://data.jsdelivr.com/v1/package/npm/paper-dashboard/badge" rel="stylesheet"/>
-    <link href="css/paper-dashboard.css" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/css/demo.css" rel="stylesheet" rel="stylesheet" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" rel="stylesheet" />
+    
 
 
     <!--  Fonts and icons     -->
@@ -50,7 +52,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="user" class="topicos">
+                    <a href="{{route('me.profile', $user)}}" class="topicos">
                         <i class="ti-user"></i>
                         <p>User Profile</p>
                     </a>
@@ -121,7 +123,7 @@
                         @if (Auth::check())
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<p>{{auth()->user()->name}}</p>
+									<p>{{$user->name}}</p>
 									<b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
