@@ -27,6 +27,9 @@ Route::post('login','Auth\LoginController@login')->name('login');
 
 Route::resource('user', 'UserController');
 
+Route::get('me/profile', 'MeController@profile')->name('me.profile');
+
+
 
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');

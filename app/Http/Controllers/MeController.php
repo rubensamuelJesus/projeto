@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MeController extends Controller
 {
@@ -16,9 +17,14 @@ class MeController extends Controller
         $this->middleware('auth');
     }
     
-    public function index()
+    public function profile()
     {
-        //
+        $user = Auth::user();
+        return view('me.profile', compact('user'));
+    }
+
+    public function getProfileImage(){
+        return Storage::get($this->id.'/'.$this->id.'.jpg');
     }
 
     /**
