@@ -78,10 +78,10 @@ class MeController extends Controller
     public function update()
     {
         $user = Auth::User();
-        $user->name = Request::input('name');
-        $user->email = Request::input('email');
-        $user->profile_photo = Request::input('profile_photo');
-        $user->phone = Request::input('phone');
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $profile_photo = $request->input('profile_photo');
+        $phone = $request->input('phone');
         $user->save();
         return redirect()->back();
 

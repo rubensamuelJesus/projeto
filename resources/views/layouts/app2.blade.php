@@ -11,7 +11,8 @@
 <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" type="text/css" href="../fonts/iconic/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" type="text/css" href="../../fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
 <!--===============================================================================================-->  
@@ -23,10 +24,11 @@
 <!--===============================================================================================-->  
   <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="../css/util.css">
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <link rel="stylesheet" type="text/css" href="../../css/util.css">
-  <link rel="stylesheet" type="text/css" href="../../css/style.css">
+  <link href="{{ asset('../../css/util.css') }}" rel="stylesheet"/>
+  <link href="{{ asset('../../css/style.css') }}" rel="stylesheet"/>
+  <link href="{{ asset('../css/style.css') }}" rel="stylesheet"/>
+  <link href="{{ asset('../css/util.css') }}" rel="stylesheet"/>
+
 <!--===============================================================================================-->
 </head>
 <body>

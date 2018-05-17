@@ -7,10 +7,10 @@
   </span>
 
   <span class="login100-form-title p-b-34 p-t-27">Log in</span>
-    <div class="wrap-input100 validate-input" data-validate = "Enter email">
-      <input class="input100" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
-      <span class="focus-input100" data-placeholder="&#xf15a;"></span>
-    </div>
+  <div class="wrap-input100 validate-input" data-validate = "Enter email">
+    <input class="input100" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
+    <span class="focus-input100" data-placeholder="&#xf15a;"></span>
+  </div>
 
   <div class="wrap-input100 validate-input" data-validate="Enter password">
     <input class="input100" type="password" name="password" placeholder="Password">

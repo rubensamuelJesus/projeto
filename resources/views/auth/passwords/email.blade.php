@@ -4,31 +4,31 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <span class="login100-form-logo">
+                        <i class="zmdi zmdi-landscape"></i>
+                    </span>
 
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <span class="login100-form-title p-b-34 p-t-27">Reset Password</span>
+                        <div class="wrap-input100 validate-input" data-validate = "Enter email">
+                            <input id="email" type="email" class="input100" name="email" value="{{ old('email') }}" required  placeholder="Email">
+                            <span class="focus-input100" data-placeholder="&#xf15a;"></span>
+                        </div> 
+                        <div class="col-md-6">
+                            @if ($errors->has('email'))
+                                <span class="input100">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
                         </div>
-
+                        @if (session('status'))
+                         <div class="input100">
+                            {{ session('status') }}
+                        </div>
+                        @endif
                         <div class="container-login100-form-btn">
                                 <button type="submit" class="login100-form-btn">
                                     {{ __('Password Reset') }}
