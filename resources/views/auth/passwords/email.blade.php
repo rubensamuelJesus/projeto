@@ -33,7 +33,7 @@
                                 <button type="submit" class="login100-form-btn">
                                     {{ __('Password Reset') }}
                                 </button>
-                                <a class="login100-form-btn" href="/login">Back</a>
+                                <a class="login100-form-btn" href="/login">{{ __('Back') }}</a>
                             </div>
                         </div>
                     </form>
