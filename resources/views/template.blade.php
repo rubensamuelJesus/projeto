@@ -57,13 +57,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/profiles" class="topicos">
+                    <a href="{{route('profiles')}}" class="topicos">
                         <i class="ti-list"></i>
                         <p>Users</p>
                     </a>
                 </li>
                 <li>
-                    <a href="accounts" class="topicos">
+                    <a href="{{route('accounts')}}" class="topicos">
                         <i class="ti-view-list-alt"></i>
                         <p>Accounts</p>
                     </a>
@@ -105,6 +105,13 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <a href="login">
+                                <i class="ti-lock"></i>
+                                <p>Admin......</p>
+                            </a>
+                        </li>
                         @if (Auth::guest())
                         <li>
                             <a href="login">
@@ -133,7 +140,19 @@
                               </a>
                               <ul class="dropdown-menu">
                                 <li><a href="#">Profile</a></li>
-                                <li><a href="{{ action("Auth\LoginController@logout") }}">link</a></li>
+                                <li><a href="{{ route('logout') }}">llll</a>{{csrf_field()}}</li>
+                                
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logoutaaaaaa') }}
+                                </a>
+
+                                    <li><form method="POST" action="{{route('logout')}}">
+                                        {{csrf_field()}}
+                                        <button class="dropdown-toggle">Logout</button>
+                                    </form>
+                                    </li>
                               </ul>
                             </li>
                             <li>

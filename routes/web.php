@@ -26,11 +26,16 @@ Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login','Auth\LoginController@login')->name('login');
 
 
-Route::get('me.profile', 'MeController@index')->name('me.profile');
-Route::put('me.profile', 'MeController@update')->name('me.profile');
+Route::get('me/profile', 'MeController@index')->name('me.profile');
+Route::put('me/profile', 'MeController@update')->name('me.profile');
 
 
 Route::get('profiles', 'ProfilesController@index')->name('profiles');
+
+
+Route::get('accounts', 'AccountController@index')->name('accounts');
+//Route::get('profiles', 'ProfilesController@index')->name('profiles');
+//Route::get('profiles', 'ProfilesController@index')->name('profiles');
 
 
 
