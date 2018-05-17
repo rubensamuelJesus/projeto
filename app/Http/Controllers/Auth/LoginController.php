@@ -17,12 +17,13 @@ class LoginController extends Controller
     }
 
     public function login(){
+
         $credentials = $this->validate(request(),[
             'email' => 'email|required|string',
             'password' => 'required|string'
         ]);
 
-        if(Auth::attempt($credentials)){  
+        if(Auth::attempt($credentials)){
             return redirect()->route('/');
         }
 
@@ -31,7 +32,6 @@ class LoginController extends Controller
 
     public function logout(){
         Auth::logout();
-
         return redirect('/');
     }
 

@@ -25,7 +25,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
-                                    <td><img src="{{asset('storage/profiles/'.$user->profile_photo)}}" alt="Logo" height="75px"></td>
+                                    <td><img src="{{asset('/storage/app/profiles/'.$user->profile_photo)}}" alt="Logo" height="75px"></td>
                                 </tr>
                                 @endforeach
                                 

@@ -23,6 +23,11 @@
     @endforeach
   @endif
 
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="remember" name="remember">
+    <label class="form-check-label" for="remember">Remember me</label>
+  </div>
+
   <div class="container-login100-form-btn">
     <a class="login100-form-btn" href="/">Back</a>
     <button class="login100-form-btn">Login</button>
