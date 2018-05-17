@@ -26,14 +26,21 @@ Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login','Auth\LoginController@login')->name('login');
 
 
-Route::get('me/profile', 'MeController@index')->name('me.profile');
-Route::put('me/profile', 'MeController@update')->name('me.profile');
+Route::get('me/profile', 'MeController@index')->name('me/profile');
+Route::put('me/profile', 'MeController@update')->name('me/profile');
 
 
 Route::get('profiles', 'ProfilesController@index')->name('profiles');
 
 
-Route::get('accounts', 'AccountController@index')->name('accounts');
+Route::get('account/{user}', 'AccountController@index')->name('accounts{user}');
+Route::get('account/{user}/opened', 'AccountController@index')->name('accounts{user}');
+Route::get('account/{user}/closed', 'AccountController@index')->name('accounts{user}');
+Route::delete('account/{closed}', 'AccountController@index')->name('accounts{user}');
+Route::patch('account/{closed}/close', 'AccountController@index')->name('accounts{user}');
+Route::patch('account/{closed}/reopen', 'AccountController@index')->name('accounts{user}');
+Route::post('account', 'AccountController@index')->name('accounts{user}');
+Route::put('account/{closed}', 'AccountController@index')->name('accounts{user}');
 //Route::get('profiles', 'ProfilesController@index')->name('profiles');
 //Route::get('profiles', 'ProfilesController@index')->name('profiles');
 
