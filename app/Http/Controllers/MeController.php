@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use Illuminate\Http\Request;
+use Request;
 
 class MeController extends Controller
 {

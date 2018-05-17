@@ -133,12 +133,7 @@
                               </a>
                               <ul class="dropdown-menu">
                                 <li><a href="#">Profile</a></li>
-                                    <li><form method="POST" action="{{route('logout')}}">
-                                        {{csrf_field()}}
-                                        <button >Logout</button>
-                                    </form>
-                                    </li>
-
+                                <li><a href="{{ action("Auth\LoginController@logout") }}">link</a></li>
                               </ul>
                             </li>
                             <li>
