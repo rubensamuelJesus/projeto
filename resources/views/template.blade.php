@@ -135,7 +135,7 @@
                                 <li><a href="#">Profile</a></li>
                                     <li><form method="POST" action="{{route('logout')}}">
                                         {{csrf_field()}}
-                                        <button class="dropdown-toggle">Logout</button>
+                                        <button >Logout</button>
                                     </form>
                                     </li>
 
