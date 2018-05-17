@@ -21,7 +21,7 @@ class MeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('me/profile', compact('user'));
+        return view('me.profile', compact('user'));
     }
 
 
@@ -75,13 +75,13 @@ class MeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update()
     {
-        
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->profile_photo = $request->profile_photo;
-        $user->phone = $request->phone;
+        $user = Auth::User();
+        $user->name = Request::input('name');
+        $user->email = Request::input('email');
+        $user->profile_photo = Request::input('profile_photo');
+        $user->phone = Request::input('phone');
         $user->save();
         return redirect()->back();
 

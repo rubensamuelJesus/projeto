@@ -22,7 +22,7 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                               {{Form::model($user, array('route' => array('me/profiles', $user), 'method' => 'post'))}}
+                               {{Form::open(['route' => 'me.profile', 'method' => 'put'])}}
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">

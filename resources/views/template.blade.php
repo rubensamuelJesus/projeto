@@ -26,8 +26,6 @@
     <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/css/demo.css') }}" rel="stylesheet"/>
     <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css') }}" rel="stylesheet"/>
     
-
-
     <!--  Fonts and icons     -->
     <link href="{{ asset('http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('https://fonts.googleapis.com/css?family=Muli:400,300') }}" rel="stylesheet"/>
@@ -53,7 +51,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('me/profile')}}" class="topicos">
+                    <a href="{{route('me.profile')}}" class="topicos">
                         <i class="ti-user"></i>
                         <p>User Profile</p>
                     </a>
