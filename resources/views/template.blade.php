@@ -26,8 +26,6 @@
     <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/css/demo.css') }}" rel="stylesheet"/>
     <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css') }}" rel="stylesheet"/>
     
-
-
     <!--  Fonts and icons     -->
     <link href="{{ asset('http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('https://fonts.googleapis.com/css?family=Muli:400,300') }}" rel="stylesheet"/>
@@ -53,19 +51,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('me/profile')}}" class="topicos">
+                    <a href="{{route('me.profile')}}" class="topicos">
                         <i class="ti-user"></i>
                         <p>User Profile</p>
                     </a>
                 </li>
                 <li>
-                    <a href="/profiles" class="topicos">
+                    <a href="{{route('profiles')}}" class="topicos">
                         <i class="ti-list"></i>
                         <p>Users</p>
                     </a>
                 </li>
                 <li>
-                    <a href="accounts" class="topicos">
+                    <a href="{{route('accounts')}}" class="topicos">
                         <i class="ti-view-list-alt"></i>
                         <p>Accounts</p>
                     </a>
@@ -135,14 +133,15 @@
                               </a>
                               <ul class="dropdown-menu">
                                 <li><a href="#">Profile</a></li>
+                                    <li><form method="POST" action="{{route('logout')}}">
+                                        {{csrf_field()}}
+                                        <button class="dropdown-toggle">Logout</button>
+                                    </form>
+                                    </li>
 
                               </ul>
                             </li>
                             <li>
-                                    <form method="POST" action="{{route('logout')}}">
-                                        {{csrf_field()}}
-                                        <button class="btn">Logout</button>
-                                    </form>
                             </li>
                         @endif
                     </ul>
