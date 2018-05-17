@@ -143,10 +143,6 @@
                               </ul>
                             </li>
                             <li>
-                                    <form method="POST" action="{{route('logout')}}">
-                                        {{csrf_field()}}
-                                        <button class="btn">Logout</button>
-                                    </form>
                             </li>
                         @endif
                     </ul>
