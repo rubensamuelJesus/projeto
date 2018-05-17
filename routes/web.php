@@ -33,6 +33,11 @@ Route::put('me/profile', 'MeController@update')->name('me.profile');
 Route::get('profiles', 'ProfilesController@index')->name('profiles');
 
 
+Route::get('accounts', 'AccountController@index')->name('accounts');
+//Route::get('profiles', 'ProfilesController@index')->name('profiles');
+//Route::get('profiles', 'ProfilesController@index')->name('profiles');
+
+
 
 
 

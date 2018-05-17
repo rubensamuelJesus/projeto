@@ -57,13 +57,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/profiles" class="topicos">
+                    <a href="{{route('profiles')}}" class="topicos">
                         <i class="ti-list"></i>
                         <p>Users</p>
                     </a>
                 </li>
                 <li>
-                    <a href="accounts" class="topicos">
+                    <a href="{{route('accounts')}}" class="topicos">
                         <i class="ti-view-list-alt"></i>
                         <p>Accounts</p>
                     </a>
@@ -135,7 +135,7 @@
                                 <li><a href="#">Profile</a></li>
                                     <li><form method="POST" action="{{route('logout')}}">
                                         {{csrf_field()}}
-                                        <button >Logout</button>
+                                        <button class="dropdown-toggle">Logout</button>
                                     </form>
                                     </li>
 
