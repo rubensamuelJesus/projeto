@@ -20,7 +20,8 @@ class ProfilesController extends Controller
     
     public function index()
     {
-        $users_all = Profiles::all();
-        return view('profiles', compact('users_all'));
+        //$users_all = Profiles::all();
+        //return view('profiles', compact('users_all'));
+
     }
 }
