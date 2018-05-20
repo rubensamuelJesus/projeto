@@ -14,14 +14,10 @@ class User extends Authenticatable
      *
      * @var array
      */
-    
     protected $table = 'users';
-
-
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'profile_photo',
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -30,6 +26,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // A user may have 0 or more posts
+    public function movements()
+    {
+        return $this->hasMany('App\Movement');
+    } 
+
+    public function associate_members()
+    {
+        return $this->hasMany('App\Associate_members','main_user_id');
+    } 
+
+    public function accounts()
+    {
+        return $this->hasMany('App\Accounts');
+    } 
 
     public function isAdmin()
     {
@@ -41,7 +53,3 @@ class User extends Authenticatable
         return $this->admin;
     } 
 }
-
-
-
-

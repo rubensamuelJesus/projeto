@@ -44,6 +44,8 @@
     </div>
 </div>
 
+
+
 <table id="table" class="table-striped table-hover">
     <tr class="header">
         <th style="width:35%;">Photo</th>
@@ -60,10 +62,32 @@
         </tr>
         @endverAdmin
     @endforeach
+
+    @foreach ($associated_members as $associated_member)
+             {{$associated_member->name}}     
+    @endforeach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     <tr>
         <td>Glass '17</td>
-        <td>Tablet</td>
+        <td>Administrador</td>
         <td><a href="#" class="btn btn-primary" target="_blank">Download</a></td>
     </tr>
     <tr>
@@ -77,6 +101,13 @@
         <td><a href="#" class="btn btn-primary" target="_blank">Download</a></td>
     </tr>
 </table>
+
+
+
+
+
+
+
 <script>
 $(function () {
     $('#search').on('input', function () {
