@@ -27,15 +27,20 @@ class ProfilesController extends Controller
     {
         $users_all = Profiles::all();
         $user = Auth::user();
-        /*variavel de teste */$user_teste = User::find(28);
-        $ids_associated_members;
-        foreach ($user_teste->associate_members as $associate)
-        {
-            $ids_associated_members[] = $associate->associated_user_id;
-        }  
-        $associated_members = User::select()
+        //variavel de teste ----- $user_teste = User::find(28);
+        $ids_associated_members = null;
+        $ids_associated_belong = null;
+        $associated_members = null;
+
+        if(!$user->associate_members == null){
+            foreach ($user->associate_members as $associate)
+            {
+                $ids_associated_members[] = $associate->associated_user_id;
+            } 
+            $associated_members = User::select()
                     ->whereIn('id', $ids_associated_members)
-                    ->get();
+                    ->get(); 
+        }
         return view('profiles', compact('users_all','user','associated_members'));
        
     }

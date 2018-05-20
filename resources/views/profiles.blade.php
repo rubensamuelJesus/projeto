@@ -31,68 +31,113 @@
     </ul>
     <div id="myTabContent-kv-1" class="tab-content">
         <div class="tab-pane fade in active" id="home-kv-1">
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-striped">
-                        <thead>
+            <table class="table table-striped">
+                @include('thead')
+                <tbody>
+                        @foreach ($users_all as $user)
+                            @isAdmin($user)
                             <tr>
-                                <th>
-                                    Photo                        
-                                </th>
-                                <th>
-                                    Name
-                                </th>
-                                <th>
-                                    Role
-                                </th>
+                                <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
+                                <th>{{$user->name}}</th>
+                                <th>Administrador</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                                @foreach ($users_all as $user)
-                                    @isAdmin($user)
-                                    <tr>
-                                        <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
-                                        <th>{{$user->name}}</th>
-                                        <th>Administrador</th>
-                                    </tr>
-                                    @endisAdmin
-                                @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>        
+                            @endisAdmin
+                        @endforeach
+                </tbody>
+            </table>  
         </div>
         <div class="tab-pane fade" id="blocked_users">
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-striped">
-                        <thead>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Photo                        
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Role
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach ($users_all as $user)
+                            @isBlocked($user)
                             <tr>
-                                <th>
-                                    Photo                        
-                                </th>
-                                <th>
-                                    Name
-                                </th>
-                                <th>
-                                    Role
-                                </th>
+                                <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
+                                <td>{{$user->name}}</td>
+                                <td>Administrador</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                                @foreach ($users_all as $user)
-                                    @isBlocked($user)
-                                    <tr>
-                                        <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
-                                        <td>{{$user->name}}</td>
-                                        <td>Administrador</td>
-                                    </tr>
-                                    @endisBlocked
-                                @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>      
+                            @endisBlocked
+                        @endforeach
+                </tbody>
+            </table>     
+        </div>
+        <div class="tab-pane fade" id="associate_members">
+            <table class="table table-striped">
+                @if(!$associated_members == null)
+                    @include('thead')
+                @endif
+                <tbody>
+                        @if(!$associated_members == null)
+                            @foreach ($associated_members as $associated_member)
+                                <tr>
+                                    <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
+                                    <td>{{$associated_member->name}}</td>
+                                    <td>Administrador</td>
+                                </tr>
+                            @endforeach
+                        @else
+                           <p>Nenhum Registo</p>
+                        @endif
+
+                </tbody>
+            </table>     
+        </div>
+        <div class="tab-pane fade" id="associate_members_I_belong_to">
+            <table class="table table-striped">
+                @if(!$associated_members == null)
+                    @include('thead')
+                @endif
+                <tbody>
+                    @if(!$associated_members == null)
+                        @foreach ($users_all as $user)
+                            @isBlocked($user)
+                            <tr>
+                                <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
+                                <td>{{$user->name}}</td>
+                                <td>Administrador</td>
+                            </tr>
+                            @endisBlocked
+                        @endforeach
+                    @else
+                       <p>Nenhum Registo</p>
+                    @endif
+                </tbody>
+            </table>     
+        </div>
+        <div class="tab-pane fade" id="all">
+            <table class="table table-striped">
+                @if(!$associated_members == null)
+                    @include('thead')
+                @endif
+                <tbody>
+                        @if(!$associated_members == null)
+                            @foreach ($users_all as $user)
+                                @isBlocked($user)
+                                <tr>
+                                    <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
+                                    <td>{{$user->name}}</td>
+                                    <td>Administrador</td>
+                                </tr>
+                                @endisBlocked
+                            @endforeach
+                        @else
+                           <p>Nenhum Registo</p>
+                        @endif
+                </tbody>
+            </table>     
         </div>
     </div>
 </div>
