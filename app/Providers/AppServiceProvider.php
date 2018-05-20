@@ -15,8 +15,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Blade::if('verAdmin', function ($user) {
+        \Blade::if('isAdmin', function ($user) {
             return auth()->check() && $user->admin;
+        });
+
+        \Blade::if('isBlocked', function ($user) {
+            return auth()->check() && $user->blocked;
         });
 
         \Blade::if('admin', function () {
