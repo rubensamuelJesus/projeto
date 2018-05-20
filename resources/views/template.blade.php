@@ -31,6 +31,15 @@
     <link href="{{ asset('https://fonts.googleapis.com/css?family=Muli:400,300') }}" rel="stylesheet"/>
     <link href="{{ asset('css/themify-icons.css') }}" rel="stylesheet"/>
 
+    <link href="{{ asset('https:////maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css"/>
+    <link href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js') }}" rel="stylesheet"/>
+    <link href="{{ asset('code.jquery.com/jquery-1.11.1.min.js') }}" rel="stylesheet"/>
+
+    <link href="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js') }}" rel="stylesheet"/>
+    <link href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js') }}" rel="stylesheet"/>
+    <link href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css') }}" rel="stylesheet"/>
+
 </head>
 <body>
 
@@ -59,7 +68,7 @@
                 <li>
                     <a href="{{route('profiles')}}" class="topicos">
                         <i class="ti-list"></i>
-                        <p>Users</p>
+                        <p>Profiles</p>
                     </a>
                 </li>
                 <li>
@@ -105,13 +114,6 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-
-                        <li>
-                            <a href="login">
-                                <i class="ti-lock"></i>
-                                <p>Admin......</p>
-                            </a>
-                        </li>
                         @if (Auth::guest())
                         <li>
                             <a href="login">
@@ -132,7 +134,18 @@
                                 <p>Settings</p>
                             </a>
                         </li>
+
+                        @admin
+                            <li>
+                                <a href="login">
+                                    <i class="ti-lock"></i>
+                                    <p>Admin......</p>
+                                </a>
+                            </li>
+                        @endadmin
+
                         @if (Auth::check())
+                            
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <p>{{$user->name}}</p>
@@ -197,7 +210,7 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
-    <script src="js/paper-dashboard.js"></script>
+    <!--<script src="js/paper-dashboard.js"></script>
 
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/assets/js/demo.js"></script>

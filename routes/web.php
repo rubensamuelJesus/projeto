@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\IsAdmin;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +20,10 @@ Route::view('icons', 'icons');
 Route::view('estatistics', 'estatistics');
 Route::view('register', 'register');*/
 
+
 Route::get('/','HomeController@index')->name('/');
 Route::get('/table','HomeController@index')->name('/');
+Route::get('profiles', 'ProfilesController@index')->name('profiles');
 
 //Login routes
 Route::get('login', 'Auth\LoginController@showLoginForm');
@@ -30,7 +34,7 @@ Route::get('me/profile', 'MeController@index')->name('me.profile');
 Route::put('me/profile', 'MeController@update')->name('me.profile');
 
 
-Route::get('profiles', 'ProfilesController@index')->name('profiles');
+
 
 
 Route::get('account/{user}', 'AccountController@index')->name('accounts{user}');

@@ -15,6 +15,7 @@ class UserController extends Controller
 
     public function index(User $user)
     {
+
         return view('user.index', compact('user'));
     }
 
@@ -22,7 +23,6 @@ class UserController extends Controller
     {   
         
     }
-
     public function update(User $user)
     { 
         $this->validate(request(), [
