@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 <form method="POST" action= "<?php echo e(route('register')); ?>" class="login100-form validate-form">
   <?php echo e(csrf_field()); ?>

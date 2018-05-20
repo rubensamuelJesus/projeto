@@ -63,7 +63,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo e(route('accounts')); ?>" class="topicos">
+                    <a href="" class="topicos">
                         <i class="ti-view-list-alt"></i>
                         <p>Accounts</p>
                     </a>
@@ -105,6 +105,13 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <a href="login">
+                                <i class="ti-lock"></i>
+                                <p>Admin......</p>
+                            </a>
+                        </li>
                         <?php if(Auth::guest()): ?>
                         <li>
                             <a href="login">
@@ -133,13 +140,21 @@
                               </a>
                               <ul class="dropdown-menu">
                                 <li><a href="#">Profile</a></li>
+                                <li><a href="<?php echo e(route('logout')); ?>">llll</a><?php echo e(csrf_field()); ?></li>
+                                
+                                <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    <?php echo e(__('Logoutaaaaaa')); ?>
+
+                                </a>
+
                                     <li><form method="POST" action="<?php echo e(route('logout')); ?>">
                                         <?php echo e(csrf_field()); ?>
 
                                         <button class="dropdown-toggle">Logout</button>
                                     </form>
                                     </li>
-
                               </ul>
                             </li>
                             <li>

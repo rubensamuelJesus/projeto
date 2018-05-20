@@ -13,7 +13,7 @@
 
                         <span class="login100-form-title p-b-34 p-t-27">Reset Password</span>
                         <div class="wrap-input100 validate-input" data-validate = "Enter email">
-                            <input id="email" type="email" class="input100" name="email" value="<?php echo e(old('email')); ?>" required  placeholder="Email">
+                            <input id="email" type="email" class="input100" name="email" value="<?php echo e(old('email')); ?>" placeholder="Email">
                             <span class="focus-input100" data-placeholder="&#xf15a;"></span>
                         </div> 
                         <div class="col-md-6">

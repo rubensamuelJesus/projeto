@@ -15,17 +15,16 @@
 
                         <span class="login100-form-title p-b-34 p-t-27">New Password</span>
                         <div class="wrap-input100 validate-input" data-validate = "Enter email">
-                            <input id="email" type="email" class="input100 name="email" value="<?php echo e(old('email')); ?>" placeholder="Email">
+                            <input id="email" type="email" class="input100" name="email" value="<?php echo e(old('email')); ?>" placeholder="Email">
                             <span class="focus-input100" data-placeholder="&#xf15a;"></span>
                         </div> 
 
                         <div class="col-md-6">
                             <?php if($errors->has('email')): ?>
-                                <span class="invalid-feedback">
+                                <span class="input100">
                                     <strong><?php echo e($errors->first('email')); ?></strong>
                                 </span>
                             <?php endif; ?>
-                        </div>
                         </div>
                         
                         <div class="wrap-input100 validate-input" data-validate="Enter password">
@@ -35,7 +34,7 @@
 
                         <div class="col-md-6">
                             <?php if($errors->has('password')): ?>
-                                <span class="invalid-feedback">
+                                <span class="input100">
                                     <strong><?php echo e($errors->first('password')); ?></strong>
                                 </span>
                             <?php endif; ?>
@@ -45,7 +44,7 @@
                             <input id="password-confirm" class="input100" type="password" name="password_confirmation" placeholder="Confirm password">
                             <span class="focus-input100" data-placeholder="&#xf191;"></span>
                         </div>
-
+                        
                         <?php if(session('status')): ?>
                          <div class="input100">
                             <?php echo e(session('status')); ?>
