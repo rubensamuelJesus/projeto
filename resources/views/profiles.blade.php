@@ -62,32 +62,41 @@
                 </div>
             </div>        
         </div>
+        <div class="tab-pane fade" id="blocked_users">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Photo                        
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Role
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                @foreach ($users_all as $user)
+                                    @isBlocked($user)
+                                    <tr>
+                                        <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
+                                        <td>{{$user->name}}</td>
+                                        <td>Administrador</td>
+                                    </tr>
+                                    @endisBlocked
+                                @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>      
+        </div>
     </div>
 </div>
-        <!-- /tabs-above -->
 
-    @foreach ($users_all as $user)
-        @isAdmin($user)
-        <tr>
-            <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
-            <td>{{$user->name}}</td>
-            <td>Administrador</td>
-        </tr>
-        @endisAdmin
-
-        @isBlocked($user)
-        <tr>
-            <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
-            <td>{{$user->name}}</td>
-            <td>Administrador</td>
-        </tr>
-        @endisBlocked
-        
-    @endforeach
-
-    @foreach ($associated_members as $associated_member)
-             {{$associated_member->name}}     
-    @endforeach-->
 
 
 
