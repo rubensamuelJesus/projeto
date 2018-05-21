@@ -15,7 +15,7 @@ class Associate_members extends Model
 	// Disables auto timestamps
 	public $timestamps = false;
 
-	public function user(){
-		return $this->belongsToMany('App\User');
+	public function users(){
+		return $this->hasMany('App\User');
 	}
 }

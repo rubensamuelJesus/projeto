@@ -17,7 +17,7 @@
             Associate members I belong to</a>
         </li>
         <li>
-            <a href="#profile-kv-1" role="tab-kv" data-toggle="tab"><i class="glyphicon glyphicon-user"></i>
+            <a href="#all" role="tab-kv" data-toggle="tab"><i class="glyphicon glyphicon-user"></i>
             All</a>
         </li>
         <li>
@@ -30,10 +30,13 @@
         </li>
     </ul>
     <div id="myTabContent-kv-1" class="tab-content">
-        <div class="tab-pane fade in active" id="home-kv-1">
+        <div class="tab-pane fade in active" id="administrador">
             <table class="table table-striped">
-                @include('thead')
+                @if(!$users_all == null)
+                    @include('thead')
+                @endif    
                 <tbody>
+                    @if(!$users_all == null)
                         @foreach ($users_all as $user)
                             @isAdmin($user)
                             <tr>
@@ -43,71 +46,25 @@
                             </tr>
                             @endisAdmin
                         @endforeach
+                    @else
+                       <p>Nenhum Registo</p>
+                    @endif
                 </tbody>
             </table>  
         </div>
         <div class="tab-pane fade" id="blocked_users">
             <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>
-                            Photo                        
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Role
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                        @foreach ($users_all as $user)
-                            @isBlocked($user)
-                            <tr>
-                                <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
-                                <td>{{$user->name}}</td>
-                                <td>Administrador</td>
-                            </tr>
-                            @endisBlocked
-                        @endforeach
-                </tbody>
-            </table>     
-        </div>
-        <div class="tab-pane fade" id="associate_members">
-            <table class="table table-striped">
-                @if(!$associated_members == null)
+                @if(!$users_all == null)
                     @include('thead')
                 @endif
                 <tbody>
-                        @if(!$associated_members == null)
-                            @foreach ($associated_members as $associated_member)
-                                <tr>
-                                    <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
-                                    <td>{{$associated_member->name}}</td>
-                                    <td>Administrador</td>
-                                </tr>
-                            @endforeach
-                        @else
-                           <p>Nenhum Registo</p>
-                        @endif
-
-                </tbody>
-            </table>     
-        </div>
-        <div class="tab-pane fade" id="associate_members_I_belong_to">
-            <table class="table table-striped">
-                @if(!$associated_members == null)
-                    @include('thead')
-                @endif
-                <tbody>
-                    @if(!$associated_members == null)
+                    @if(!$users_all == null)    
                         @foreach ($users_all as $user)
                             @isBlocked($user)
                             <tr>
-                                <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
-                                <td>{{$user->name}}</td>
-                                <td>Administrador</td>
+                                <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
+                                <th>{{$user->name}}</th>
+                                <th>Blocked users</th>
                             </tr>
                             @endisBlocked
                         @endforeach
@@ -117,21 +74,59 @@
                 </tbody>
             </table>     
         </div>
-        <div class="tab-pane fade" id="all">
+        <div class="tab-pane fade" id="associate_members">
             <table class="table table-striped">
                 @if(!$associated_members == null)
                     @include('thead')
                 @endif
                 <tbody>
-                        @if(!$associated_members == null)
-                            @foreach ($users_all as $user)
-                                @isBlocked($user)
+                    @if(!$associated_members == null)
+                        @foreach ($associated_members as $associated_member)
+                            <tr>
+                                <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
+                                <th>{{$associated_member->name}}</th>
+                                <th>Associated members</th>
+                            </tr>
+                        @endforeach
+                    @else
+                       <p>Nenhum Registo</p>
+                    @endif
+                </tbody>
+            </table>     
+        </div>
+        <div class="tab-pane fade" id="associate_members_I_belong_to">
+            <table class="table table-striped">
+                @if(!$associated_members_belong == null)
+                    @include('thead')
+                @endif
+                <tbody>
+                        @if(!$associated_members_belong == null)
+                            @foreach ($associated_members_belong as $associated_member_belong)
                                 <tr>
-                                    <td><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></td>
-                                    <td>{{$user->name}}</td>
-                                    <td>Administrador</td>
+                                    <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
+                                    <th>{{$associated_member_belong->name}}</th>
+                                    <th>Associate members I belong to</th>
                                 </tr>
-                                @endisBlocked
+                            @endforeach
+                        @else
+                           <p>Nenhum Registo</p>
+                        @endif
+                </tbody>
+            </table>     
+        </div>
+        <div class="tab-pane fade" id="all">
+            <table class="table table-striped">
+                @if(!$users_all == null)
+                    @include('thead')
+                @endif
+                <tbody>
+                        @if(!$users_all == null)
+                            @foreach ($users_all as $user)
+                                <tr>
+                                    <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
+                                    <th>{{$user->name}}</th>
+                                    <th>All</th>
+                                </tr>
                             @endforeach
                         @else
                            <p>Nenhum Registo</p>
@@ -141,13 +136,4 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
 @endsection
