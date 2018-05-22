@@ -43,8 +43,13 @@ class AccountController extends Controller
         $user = Auth::user();
         $credentials = $this->validate(request(),[
             'account_type' => 'required',
+<<<<<<< HEAD
             'date' => 'required',
             'code' => 'required|string',
+=======
+            'data' => 'required|string',
+            'account_code' => 'required|string|unique:accounts,code|confirmed',
+>>>>>>> 8341d8a30b9b67abbcc182c2760b6704c9367401
             'description' => 'required|string',
             'start_balance' => 'required|string',
         ]);
