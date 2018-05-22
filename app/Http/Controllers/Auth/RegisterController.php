@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -67,9 +68,9 @@ class RegisterController extends Controller
     protected function register(Request $request)
     {
         $credentials = $this->validate(request(),[
-            'name' => 'required|string',
-            'email' => 'email|required|string',
-            'password' => 'required|string|min:6|confirmed',
+            'name' => 'string|regex:/^([a-z]+[,.]?[ ]?|[a-z]+[\'-]?)+$/',
+            'email' => 'email|string',
+            'password' => 'required|string|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/|confirmed',
             'password_confirmation' => 'required|string|min:6',
             'phone' => 'string',
             'profile_photo' => 'string',
