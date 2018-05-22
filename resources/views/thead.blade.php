@@ -1,0 +1,13 @@
+<thead>
+    <tr>
+        <th>
+            Photo                        
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Tag
+        </th>
+    </tr>
+</thead>
