@@ -9,7 +9,7 @@
                         <h4 class="title">Add Account</h4>
                     </div>
                     <div class="content">
-                       {{Form::open(['route' => 'account', 'method' => 'POST'])}}
+                        {{Form::open(['route' => 'account', 'method' => 'post','_method', '_token']) }} 
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -24,14 +24,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Data</label>
-                                        <input type="date" class="form-control border-input" placeholder="Data" name="data">
+                                        <label>Date</label>
+                                        <input type="date" class="form-control border-input" placeholder="Date" name="date"  value="{{ old('date') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Account Code</label>
-                                        <input type="text" class="form-control border-input" placeholder="Account Code" name="account_code">
+                                        <input type="text" class="form-control border-input" placeholder="Account Code" name="code" value="{{ old('code') }}">
                                     </div>
                                 </div>
                             </div>
@@ -40,16 +40,25 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                       <label for="comment">Description</label>
-                                      <textarea name="description" class="form-control" rows="5" id="comment"></textarea>
+                                      <textarea value="description" name="description" class="form-control" rows="5" id="description"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Start Balance</label>
-                                        <input type="numberarea" class="form-control border-input" placeholder="Start Balance" name="start_balance">
+                                        <input type="numberarea" class="form-control border-input" placeholder="Start Balance" name="start_balance" value="{{ old('start_balance') }}">
                                     </div>
                                 </div>
                             </div>
+                            @if($errors->all())
+                                @foreach($errors->all() as $error)
+                                    <div class="text-center">
+                                        <span class="invalid-feedback">
+                                        <strong>{{$error}}<br></strong>
+                                    </span>
+                                    </div>
+                                @endforeach
+                            @endif
                             <div class="text-center">
                                 <button type="submit" class="btn btn-info btn-fill btn-wd">Create account</button>
                             </div>

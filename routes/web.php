@@ -38,8 +38,10 @@ Route::put('me/profile', 'MeController@update')->name('me.profile');
 Route::get('me/associates', 'MeController@associates')->name('me.associates');
 Route::get('me/associate-of', 'MeController@associateof')->name('me.associate-of');
 
+
+Route::post('account', 'AccountController@store')->name('account');
 Route::get('account', 'AccountController@index')->name('account');
-Route::put('account', 'AccountController@store')->name('account');
+Route::get('accounts/{user}', 'AccountController@accounts_user')->name('accounts/{user}');
 
 
 
@@ -47,7 +49,7 @@ Route::put('account', 'AccountController@store')->name('account');
 
 
 
-Route::get('account/{user}', 'AccountController@index')->name('accounts{user}');
+/*Route::get('account/{user}', 'AccountController@index')->name('accounts{user}');
 Route::get('account/{user}/opened', 'AccountController@index')->name('accounts{user}');
 Route::get('account/{user}/closed', 'AccountController@index')->name('accounts{user}');
 Route::delete('account/{closed}', 'AccountController@index')->name('accounts{user}');
@@ -56,7 +58,7 @@ Route::patch('account/{closed}/reopen', 'AccountController@index')->name('accoun
 Route::post('account', 'AccountController@index')->name('accounts{user}');
 Route::put('account/{closed}', 'AccountController@index')->name('accounts{user}');
 //Route::get('profiles', 'ProfilesController@index')->name('profiles');
-//Route::get('profiles', 'ProfilesController@index')->name('profiles');
+//Route::get('profiles', 'ProfilesController@index')->name('profiles');*/
 
 
 

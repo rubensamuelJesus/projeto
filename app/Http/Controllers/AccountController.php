@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Account;
+use App\Account_types;
 use App\Home;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -16,7 +18,7 @@ class AccountController extends Controller
      */
     public function __construct()
     {
-       // $this->middleware('auth');
+       $this->middleware('auth');
     }
 
     /**
@@ -30,29 +32,40 @@ class AccountController extends Controller
         return view('account', compact('user'));
     }
 
+    public function accounts_user (User $user)
+    {
+        $accounts = $user->accounts;
+        return view('accounts',compact("user","accounts"));
+    }
+
     public function store(Request $request)
     {
+        $user = Auth::user();
         $credentials = $this->validate(request(),[
             'account_type' => 'required',
-            'data' => 'required|string',
-            'account_code' => 'required|string|confirmed',
+            'date' => 'required',
+            'code' => 'required|string',
             'description' => 'required|string',
             'start_balance' => 'required|string',
         ]);
 
-        $id_account_type = Account_types::select()
-                    ->where('name', '=',$request->account_type)
-                    ->get(); 
+        
 
-                    return $id_account_type;
+        /*$account_type_id = Account_types::select()
+                    ->where('name',$request->account_type)
+                    ->get();*/
+        $account_type_id = Account_types::where('name', $request->account_type)->first(); 
 
         Account::create([
-            'account_type' => $request->account_type,
             'owner_id' => $user->id,
-            'data' => $request->data,
-            'account_code' => ($request->account_code),
+            'account_type_id' => $account_type_id->id,
+            'date' => $request->date,
+            'code' => $request->code,
             'description' => $request->description,
             'start_balance' => $request->start_balance,
+            'created_at' => date('Y-m-d H:i:s'),
         ]);
+
+        return redirect('/');
     }
 }

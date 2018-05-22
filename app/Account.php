@@ -14,7 +14,9 @@ class Account extends Model
 	// Disables auto timestamps
 	public $timestamps = false;
 
+	protected $fillable = ['name','owner_id','account_type_id','date','code','description','start_balance','created_at'];
+
 	public function account_type(){
-		return $this->belongsTo('App\Account_types');
+		return $this->belongsTo('App\Account_types','account_type_id','id');
 	}
 }
