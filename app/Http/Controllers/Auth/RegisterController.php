@@ -68,8 +68,8 @@ class RegisterController extends Controller
     protected function register(Request $request)
     {
         $credentials = $this->validate(request(),[
-            'name' => 'string|regex:/^([a-z]+[,.]?[ ]?|[a-z]+[\'-]?)+$/',
-            'email' => 'email|string',
+            'name' => 'required|string|regex:/^([a-z]+[,.]?[ ]?|[a-z]+[\'-]?)+$/',
+            'email' => 'required|email|string',
             'password' => 'required|string|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/|confirmed',
             'password_confirmation' => 'required|string|min:6',
             'phone' => 'string',
