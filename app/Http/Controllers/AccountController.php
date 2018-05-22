@@ -35,7 +35,7 @@ class AccountController extends Controller
         $credentials = $this->validate(request(),[
             'account_type' => 'required',
             'data' => 'required|string',
-            'account_code' => 'required|string|confirmed',
+            'account_code' => 'required|string|unique:accounts,code|confirmed',
             'description' => 'required|string',
             'start_balance' => 'required|string',
         ]);
