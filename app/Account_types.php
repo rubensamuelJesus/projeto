@@ -14,6 +14,8 @@ class Account_types extends Model
 	// Disables auto timestamps
 	public $timestamps = false;
 
+	protected $fillable = ['name','id'];
+
 	public function accounts(){
 		return $this->hasMany('App\Account');
 	}

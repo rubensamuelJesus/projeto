@@ -86,6 +86,12 @@
                 <li>
                     <a href="{{route('account')}}" class="topicos">
                         <i class="ti-view-list-alt"></i>
+                        <p>Create Account</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('accounts/{user}',Auth::user()->id)}}" class="topicos">
+                        <i class="ti-view-list-alt"></i>
                         <p>Accounts</p>
                     </a>
                 </li>
