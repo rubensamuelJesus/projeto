@@ -35,6 +35,16 @@ Route::put('me/profile', 'MeController@update')->name('me.profile');
 
 
 
+Route::get('me/associates', 'MeController@associates')->name('me.associates');
+Route::get('me/associate-of', 'MeController@associateof')->name('me.associate-of');
+
+Route::get('/account', 'AccountController@index')->name('account');
+Route::put('/account', 'AccountController@update')->name('account');
+
+
+
+
+
 
 
 Route::get('account/{user}', 'AccountController@index')->name('accounts{user}');

@@ -7,7 +7,7 @@
             Name
         </th>
         <th>
-            Role
+            Tag
         </th>
     </tr>
 </thead>

@@ -85,7 +85,7 @@
                             <tr>
                                 <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
                                 <th>{{$associated_member->name}}</th>
-                                <th>Associated members</th>
+                                <th>Associate</th>
                             </tr>
                         @endforeach
                     @else
@@ -105,7 +105,7 @@
                                 <tr>
                                     <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
                                     <th>{{$associated_member_belong->name}}</th>
-                                    <th>Associate members I belong to</th>
+                                    <th>Associate-of</th>
                                 </tr>
                             @endforeach
                         @else

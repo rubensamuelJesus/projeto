@@ -72,6 +72,18 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{route('me.associates')}}" class="topicos">
+                        <i class="ti-list"></i>
+                        <p>Associates</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('me.associate-of')}}" class="topicos">
+                        <i class="ti-list"></i>
+                        <p>/Associate-of</p>
+                    </a>
+                </li>
+                <li>
                     <a href="" class="topicos">
                         <i class="ti-view-list-alt"></i>
                         <p>Accounts</p>
