@@ -26,7 +26,7 @@ class UserController extends Controller
     public function update(User $user)
     { 
         $this->validate(request(), [
-            'name' => 'required',
+            'name' => 'required|regex:/^[\pL\s]+$/u',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',
             'phone' => 'required',
