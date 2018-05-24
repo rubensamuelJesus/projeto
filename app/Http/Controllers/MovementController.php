@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Account;
+use App\Account_types;
 use App\Movement;
 use App\Movement_categories;
 use Illuminate\Support\Facades\Auth;
@@ -54,28 +55,32 @@ class MovementController extends Controller
             'description' => 'required|string',
             'value' => 'string',
         ]);
+        $account_type_id = Account_types::where('name', request('account_type'))->first(); 
         if ( strcasecmp( $request->type, 'Revenue') == 0 ){
             $end_balance = $account->current_balance + $request->value;
+            $account->current_balance =  $account->current_balance + $request->value;
         }
         else{
-            $end_balance = 
+            $account->current_balance =  $account->current_balance - $request->value;
+            $end_balance = $account->current_balance - $request->value;
         }
 
-        $end_balance = $account;
-
         $movement_id = Movement_categories::where('name', request('category'))->first();
+
+        $account->save();
         Movement::create([
-            'account_id' => $user->id,
+            'account_id' => $account->id,
             'type' => $request->type,
             'date' => $request->date,
             'start_balance' => $account->current_balance,
-            'end_balance' => ,
+            'end_balance' => $end_balance,
             'movement_category_id' => $movement_id->id,
             'description' => $request->description,
             'value' => $request->value,
+            'created_at' => date('Y-m-d H:i:s'),
         ]);
 
-        //return redirect('movements/{{$account->id}}');
+        return redirect()->route('movements.{account}.index', ['account' => $account]);
     }
 
     /**

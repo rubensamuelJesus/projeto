@@ -15,11 +15,11 @@ class Movement extends Model
 	public $timestamps = false;
 
 	protected $fillable = [
-        'date', 'type', 'category', 'description', 'value','account_id','movement_category_id','start_balance'
+        'date', 'type', 'category', 'description', 'value','account_id','movement_category_id','start_balance','end_balance','created_at'
     ];
 
 	public function account(){
-		return $this->belongsTo('App\Account');
+		return $this->belongsTo('App\Account','account_id','id');
 	}
 
 	public function movement_categorie(){

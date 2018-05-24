@@ -81,6 +81,7 @@ class AccountController extends Controller
 
     public function account_user_delete (Account $account)
     {
+        return $account->id;
         $account->delete();
         return back();
     }
@@ -136,10 +137,11 @@ class AccountController extends Controller
             'code' => $request->code,
             'description' => $request->description,
             'start_balance' => $request->start_balance,
+            'current_balance' => $request->start_balance,
             'created_at' => date('Y-m-d H:i:s'),
         ]);
 
-        return redirect('/');
+        return redirect()->route('accounts/{user}', ['user' => $user->id]);
     }
 }
 

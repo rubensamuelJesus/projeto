@@ -23,22 +23,24 @@
                     @if(!$accounts == null)
                         @foreach ($accounts as $account)
                             <tr>
+                                <th>{{$account->id}}</th>
                                 <th>{{$account->code}}</th>
                                 <th>{{$account->account_type->name}}</th>
                                 <th>{{$account->current_balance}}</th>
                                 <th>
 
                                     <button> 
-                                    <a href="/movements/{{$account->id}}">View Movment</a> 
-                                    </button> 
-                                    <button> 
-                                    <a href="/account/{{$account->id}}">Edit</a>
+                                    <a href="{{route('movements.{account}',$account->id)}}">View Movment</a> 
                                     </button> 
 
-                                    <form name="delete" method="POST" action="/account/{{$account->id}}">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    {{ Form::submit("Delete") }}
+                                    <button> 
+                                    <a href="{{route('account.{account}',$account->id), method('get')}}">Edit</a>
+                                    </button> 
+
+                                    <button> 
+                                    <a href="{{route('account/{account}/delete',$account->id), method('get')}}">Remove</a>
+                                    </button> 
+
 
                                 </th>
                                 
