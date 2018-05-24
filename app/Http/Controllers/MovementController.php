@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Account;
+use App\Movement;
+use App\Movement_categories;
+use Illuminate\Support\Facades\Auth;
 
 class MovementController extends Controller
 {
@@ -12,6 +15,12 @@ class MovementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function __construct()
+    {
+       $this->middleware('auth');
+    }
+
     public function index(Account $account)
     {
 		$movements = $account->movements;
@@ -34,9 +43,39 @@ class MovementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Account $account)
     {
-        //
+        $user = null;
+        $user = Auth::user();
+        $credentials = $this->validate(request(),[
+            'type' => 'required',
+            'date' => 'required',
+            'category' => 'required',/*'required|string|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',*/
+            'description' => 'required|string',
+            'value' => 'string',
+        ]);
+        if ( strcasecmp( $request->type, 'Revenue') == 0 ){
+            $end_balance = $account->current_balance + $request->value;
+        }
+        else{
+            $end_balance = 
+        }
+
+        $end_balance = $account;
+
+        $movement_id = Movement_categories::where('name', request('category'))->first();
+        Movement::create([
+            'account_id' => $user->id,
+            'type' => $request->type,
+            'date' => $request->date,
+            'start_balance' => $account->current_balance,
+            'end_balance' => ,
+            'movement_category_id' => $movement_id->id,
+            'description' => $request->description,
+            'value' => $request->value,
+        ]);
+
+        //return redirect('movements/{{$account->id}}');
     }
 
     /**

@@ -9,7 +9,7 @@
                         <h4 class="title">Add Account</h4>
                     </div>
                     <div class="content">
-                        {{Form::open(['route' => 'account', 'method' => 'post','_method', '_token']) }} 
+                        {{ Form::open(['method' => 'post','_method', '_token','route' => ['movements.{account}.create',$account->id]]) }}
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">

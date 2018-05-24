@@ -14,6 +14,10 @@ class Movement extends Model
 	// Disables auto timestamps
 	public $timestamps = false;
 
+	protected $fillable = [
+        'date', 'type', 'category', 'description', 'value','account_id','movement_category_id','start_balance'
+    ];
+
 	public function account(){
 		return $this->belongsTo('App\Account');
 	}
