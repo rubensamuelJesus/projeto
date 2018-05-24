@@ -70,7 +70,7 @@ class RegisterController extends Controller
         $credentials = $this->validate(request(),[
             'name' => 'required|string|regex:/^[\pL\s]+$/u',
             'email' => 'required|email|string|unique:users,email',
-            'password' => 'required|string|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',
+            'password' => 'required',/*'required|string|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',*/
             'password_confirmation' => 'required|string',
             'phone' => 'string',
             'profile_photo' => 'string',

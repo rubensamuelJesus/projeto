@@ -28,9 +28,12 @@
                                 <th>{{$account->current_balance}}</th>
                                 <th>
 
-
+                                    <button> 
+                                    <a href="/movements/{{$account->id}}">View Movment</a> 
+                                    </button> 
+                                    <button> 
                                     <a href="/account/{{$account->id}}">Edit</a>
-
+                                    </button> 
 
                                     <form name="delete" method="POST" action="/account/{{$account->id}}">
                                     {{ csrf_field() }}

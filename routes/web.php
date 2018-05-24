@@ -30,31 +30,40 @@ Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login','Auth\LoginController@login')->name('login');
 
 
-Route::get('me/profile', 'MeController@index')->name('me.profile');
-Route::put('me/profile', 'MeController@update')->name('me.profile');
+Route::get('/me/profile', 'MeController@index')->name('me.profile');
+Route::put('/me/profile', 'MeController@update')->name('me.profile');
 
 
 
-Route::get('me/associates', 'MeController@associates')->name('me.associates');
-Route::get('me/associate-of', 'MeController@associateof')->name('me.associate-of');
+Route::get('/me/associates', 'MeController@associates')->name('me.associates');
+Route::get('/me/associate-of', 'MeController@associateof')->name('me.associate-of');
 
 
-Route::post('account', 'AccountController@store')->name('account');
-Route::get('account', 'AccountController@index')->name('account');
-Route::get('accounts/{user}', 'AccountController@accounts_user')->name('accounts/{user}');
+Route::post('/account', 'AccountController@store')->name('account');
+Route::get('/account', 'AccountController@index')->name('account');
+Route::get('/accounts/{user}', 'AccountController@accounts_user')->name('accounts/{user}');
 
-Route::get('accounts/{user}/opened', 'AccountController@accounts_user_open')->name('accounts/{user}/opened');
-Route::get('accounts/{user}/closed', 'AccountController@accounts_user_closed')->name('accounts/{user}/closed');
-
-
-Route::patch('account/{account}/close', 'AccountController@account_user_close');
-Route::patch('account/{account}/reopen', 'AccountController@account_user_reopen');
-
-Route::delete('account/{account}', 'AccountController@account_user_delete')->name('account/{account}');
+Route::get('/accounts/{user}/opened', 'AccountController@accounts_user_open')->name('accounts/{user}/opened');
+Route::get('/accounts/{user}/closed', 'AccountController@accounts_user_closed')->name('accounts/{user}/closed');
 
 
-Route::get('account/{account}', 'AccountController@edit')->name('account.{account}');
-Route::put('account/{account}', 'AccountController@update')->name('account.{account}');
+Route::patch('/account/{account}/close', 'AccountController@account_user_close');
+Route::patch('/account/{account}/reopen', 'AccountController@account_user_reopen');
+
+Route::delete('/account/{account}', 'AccountController@account_user_delete')->name('account/{account}');
+
+
+Route::get('/account/{account}', 'AccountController@edit')->name('account.{account}');
+Route::put('/account/{account}', 'AccountController@update')->name('account.{account}');
+
+
+
+Route::get('/movements/{account}', 'MovementController@index')->name('movements.{account}');
+Route::get('/movements/{account}/create', 'MovementController@create')->name('movements.{account}.create');
+Route::post('/movements/{account}/create', 'MovementController@store')->name('movements.{account}.create');
+Route::get('/movement/{movement}', 'MovementController@edit')->name('movements.{account}');
+Route::put('/movement/{movement}', 'MovementController@update')->name('movements.{account}');
+Route::delete('/movement/{movement}', 'MovementController@delete')->name('movements.{account}');
 
 
 

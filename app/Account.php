@@ -19,4 +19,10 @@ class Account extends Model
 	public function account_type(){
 		return $this->belongsTo('App\Account_types','account_type_id','id');
 	}
+
+	public function movements(){
+		return $this->hasMany('App\Movement','account_id','id');
+	}
+
+	
 }
