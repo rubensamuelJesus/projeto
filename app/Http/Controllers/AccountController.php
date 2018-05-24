@@ -38,18 +38,61 @@ class AccountController extends Controller
         return view('accounts',compact("user","accounts"));
     }
 
+    public function accounts_user_closed (User $user)
+    {
+        $accounts = $user->accounts;
+        $accounts_user_closed = null;
+        foreach ($accounts as $account) {
+            if($account->deleted_at != null)
+                $accounts_user_closed[] = $account;
+        }
+        //return $accounts_user_closed;
+        return view('accounts_closed',compact("user","accounts_user_closed"));
+    }
+
+
+
+    public function account_user_delete (Account $account)
+    {
+        $account->delete();
+        return back();
+    }
+
+    public function account_user_close (Account $account)
+    {
+        $account->deleted_at = date('Y-m-d H:i:s');
+        $account->save();
+        return redirect()->route('accounts/{user}/closed', ['user' => Auth::id()]);
+    }
+
+    public function account_user_reopen (Account $account)
+    {
+        $account->deleted_at = null;
+        $account->save();
+        return redirect()->route('accounts/{user}/opened', ['user' => Auth::id()]);
+    }
+
+    public function accounts_user_open (User $user)
+    {
+        $accounts = $user->accounts;
+        $accounts_user_open = null;
+        foreach ($accounts as $account) {
+            if($account->deleted_at == null)
+                $accounts_user_open[] = $account;
+        }
+        //return $accounts_user_open;
+        return view('accounts_opened',compact("user","accounts_user_open"));
+    }
+
     public function store(Request $request)
     {
         $user = Auth::user();
         $credentials = $this->validate(request(),[
             'account_type' => 'required',
-<<<<<<< HEAD
             'date' => 'required',
             'code' => 'required|string',
-=======
             'data' => 'required|string',
             'account_code' => 'required|string|unique:accounts,code|confirmed',
->>>>>>> 8341d8a30b9b67abbcc182c2760b6704c9367401
             'description' => 'required|string',
             'start_balance' => 'required|string',
         ]);
@@ -74,3 +117,6 @@ class AccountController extends Controller
         return redirect('/');
     }
 }
+
+
+

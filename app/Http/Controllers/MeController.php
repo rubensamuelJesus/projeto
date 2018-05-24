@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Associate_members;
-use Request;
+use Illuminate\Http\Request;
 
 class MeController extends Controller
 {
@@ -72,7 +72,7 @@ class MeController extends Controller
                     ->whereIn('id', $ids_associated_members_belong)
                     ->get();
 
-            foreach ($associated_members_belong as $associated_member_belong)
+            /*foreach ($associated_members_belong as $associated_member_belong)
 
                 foreach ($associated_member_belong->associate_members as $associated_member_belong1) {
                     {
@@ -84,7 +84,7 @@ class MeController extends Controller
 
             $associated_members_belong = User::select()
                     ->whereIn('id', $ids_associated_members_belong)
-                    ->get();
+                    ->get();*/
         }
         return view('me.associates-of', compact('user','associated_members_belong'));
     }
@@ -140,15 +140,46 @@ class MeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request)
     {
-        $user = Auth::User();
+        $user = Auth::user();
+        /*$user = Auth::User();
         $name = $request->input('name');
         $email = $request->input('email');
         $profile_photo = $request->input('profile_photo');
         $phone = $request->input('phone');
         $user->save();
-        return redirect()->back();
+        return redirect()->back();*/
+        /*$this->validate(request(), [
+            'name' => 'required|regex:/^[\pL\s]+$/u',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',
+            'phone' => 'required',
+            'profile_photo' => 'required'
+        ]);
+
+        User::save([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'profile_photo' => $request->profile_photo,
+        ]);*/
+        $this->validate(request(), [
+            'name' => 'required|regex:/^[\pL\s]+$/u',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required',
+            'profile_photo' => 'required'
+        ]);
+
+        $user->name = request('name');
+        $user->email = request('email');
+        $user->phone = request('phone');
+        $user->profile_photo = request('profile_photo');
+
+        $user->save();
+
+        return back();
 
     }
 

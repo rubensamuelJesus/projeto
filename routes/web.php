@@ -43,7 +43,18 @@ Route::post('account', 'AccountController@store')->name('account');
 Route::get('account', 'AccountController@index')->name('account');
 Route::get('accounts/{user}', 'AccountController@accounts_user')->name('accounts/{user}');
 
+Route::get('accounts/{user}/opened', 'AccountController@accounts_user_open')->name('accounts/{user}/opened');
+Route::get('accounts/{user}/closed', 'AccountController@accounts_user_closed')->name('accounts/{user}/closed');
 
+
+Route::patch('account/{account}/close', 'AccountController@account_user_close');
+Route::patch('account/{account}/reopen', 'AccountController@account_user_reopen');
+
+Route::delete('account/{account}', 'AccountController@account_user_delete')->name('account/{account}');
+
+
+Route::get('account/{account}', 'AccountController@edit')->name('account.{account}');
+Route::put('account/{account}', 'AccountController@update')->name('account.{account}');
 
 
 

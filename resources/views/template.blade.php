@@ -82,6 +82,7 @@
                         <i class="ti-list"></i>
                         <p>Associate-of</p>
                     </a>
+                    
                 </li>
                 <li>
                     <a href="{{route('account')}}" class="topicos">
@@ -89,12 +90,26 @@
                         <p>Create Account</p>
                     </a>
                 </li>
+                @if(Auth::check())
                 <li>
                     <a href="{{route('accounts/{user}',Auth::user()->id)}}" class="topicos">
                         <i class="ti-view-list-alt"></i>
                         <p>Accounts</p>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('accounts/{user}/opened',Auth::user()->id)}}" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Accounts open</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('accounts/{user}/closed',Auth::user()->id)}}" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Accounts closed</p>
+                    </a>
+                </li>
+                @endif
                 <li class="">
                     <a href="/estatistics" class="topicos">
                         <i class="ti-bar-chart-alt"></i>

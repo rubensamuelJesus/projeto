@@ -24,8 +24,12 @@
                         @foreach ($accounts as $account)
                             <tr>
                                 <th>{{$account->code}}</th>
-                                <th>{{$account->account_type}}</th>
+                                <th>{{$account->account_type->name}}</th>
                                 <th>{{$account->current_balance}}</th>
+                                <th><form method="POST" action="/account/{{$account->id}}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                {{ Form::submit("Delete") }}</th>
                             </tr>
                         @endforeach
                     @else

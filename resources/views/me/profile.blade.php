@@ -53,6 +53,11 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 {{Form::close()}}
+                                @if($errors->all())
+    @foreach($errors->all() as $error)
+      <span class="input100">{{$error}}</span>
+    @endforeach
+  @endif
                             </div>
                         </div>
                     </div>
