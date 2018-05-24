@@ -31,6 +31,33 @@ class AccountController extends Controller
     	$user = Auth::user();
         return view('account', compact('user'));
     }
+    public function edit(Account $account)
+    {
+        return view('account_edit', compact('account'));
+    }
+    public function update(Account $account)
+    {
+        $this->validate(request(),[
+            'account_type' => 'required',
+            'code' => 'required|string',
+            'date' => 'required|string',
+            'description' => 'required|string',
+            'start_balance' => 'required|string',
+        ]);
+
+        $account->code = request('code');
+        $account->date = request('date');
+        $account->description = request('description');
+        $account->start_balance = request('start_balance');
+
+        $account_type_id = Account_types::where('name', request('account_type'))->first(); 
+
+        $account->account_type_id= $account_type_id->id;
+
+        $account->save();
+
+        return back();
+    }
 
     public function accounts_user (User $user)
     {
@@ -89,10 +116,8 @@ class AccountController extends Controller
         $user = Auth::user();
         $credentials = $this->validate(request(),[
             'account_type' => 'required',
-            'date' => 'required',
             'code' => 'required|string',
-            'data' => 'required|string',
-            'account_code' => 'required|string|unique:accounts,code|confirmed',
+            'date' => 'required|string',
             'description' => 'required|string',
             'start_balance' => 'required|string',
         ]);

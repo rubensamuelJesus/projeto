@@ -181,7 +181,7 @@
                             
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <p>{{$user->name}}</p>
+                                    <p>{{Auth::user()->name}}</p>
                                     <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
