@@ -143,6 +143,9 @@ class AccountController extends Controller
 
         return redirect()->route('accounts/{user}', ['user' => $user->id]);
     }
+
+    asdfxcv
+    xcvxcvxcv
 }
 
 
