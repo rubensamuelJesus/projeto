@@ -33,7 +33,6 @@ class AccountController extends Controller
     }
     public function edit(Account $account)
     {
-        return "edit";
         return view('account_edit', compact('account'));
     }
     public function update(Account $account)

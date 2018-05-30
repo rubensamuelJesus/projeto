@@ -9,7 +9,7 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                               {{Form::open(['route' => ['account/{account}',$account->id], 'method' => 'put'])}}
+                               {{Form::open(['route' => ['account.{account}',$account->id], 'method' => 'put','_method', '_token']) }} 
                                     <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
