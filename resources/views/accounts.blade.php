@@ -8,6 +8,9 @@
                     <thead>
                         <tr>
                             <th>
+                                Id                        
+                            </th>
+                            <th>
                                 Code                        
                             </th>
                             <th>
@@ -21,27 +24,25 @@
                 @endif
                 <tbody>
                     @if(!$accounts == null)
-                        @foreach ($accounts as $account)
+                        @foreach ($accounts as $key => $account)
                             <tr>
                                 <th>{{$account->id}}</th>
                                 <th>{{$account->code}}</th>
                                 <th>{{$account->account_type->name}}</th>
                                 <th>{{$account->current_balance}}</th>
                                 <th>
+                                    {{ Form::open(array('route' => ['account.{account}', $account->id], 'class' => 'pull-right')) }}
+                                        {{ Form::hidden('_method', 'DELETE') }}
+                                        {{ Form::submit('Remove', array('class' => 'btn btn-warning')) }}
+                                    {{ Form::close() }}
 
-                                    <button> 
+                                    <button class="btn btn-small btn-info pull-right" > 
+                                    <a href="{{route('account.{account}',$account->id)}}" >Edit</a>
+                                    </button>
+
+                                    <button class="btn btn-small btn-success pull-right" > 
                                     <a href="{{route('movements.{account}',$account->id)}}">View Movment</a> 
                                     </button> 
-
-                                    <button> 
-                                    <a href="{{route('account.{account}',$account->id), method('get')}}">Edit</a>
-                                    </button> 
-
-                                    <button> 
-                                    <a href="{{route('account/{account}/delete',$account->id), method('get')}}">Remove</a>
-                                    </button> 
-
-
                                 </th>
                                 
                             </tr>

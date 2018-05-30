@@ -71,7 +71,7 @@
                                 @endforeach
                             @endif
                             <div class="text-center">
-                                <button type="submit" class="btn btn-info btn-fill btn-wd">Create account</button>
+                                <button type="submit" class="btn btn-info btn-fill btn-wd">Create movement</button>
                             </div>
                             <div class="clearfix"></div>
                         {{Form::close()}}

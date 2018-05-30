@@ -50,7 +50,7 @@ Route::get('/accounts/{user}/closed', 'AccountController@accounts_user_closed')-
 Route::patch('/account/{account}/close', 'AccountController@account_user_close');
 Route::patch('/account/{account}/reopen', 'AccountController@account_user_reopen');
 
-Route::delete('/account/{account}', 'AccountController@account_user_delete')->name('account/{account}');
+Route::delete('/account/{account}', 'AccountController@account_user_delete');
 
 
 Route::get('/account/{account}', 'AccountController@edit')->name('account.{account}');
@@ -58,12 +58,12 @@ Route::put('/account/{account}', 'AccountController@update')->name('account.{acc
 
 
 
-Route::get('/movements/{account}', 'MovementController@index')->name('movements.{account}.index');
+Route::get('/movements/{account}', 'MovementController@index')->name('movements.{account}');
 Route::get('/movements/{account}/create', 'MovementController@create')->name('movements.{account}.create');
 Route::post('/movements/{account}/create', 'MovementController@store')->name('movements.{account}.create');
-Route::get('/movement/{movement}', 'MovementController@edit')->name('movements.{account}');
-Route::put('/movement/{movement}', 'MovementController@update')->name('movements.{account}');
-Route::delete('/movement/{movement}', 'MovementController@delete')->name('movements.{account}');
+Route::get('/movement/{movement}', 'MovementController@edit')->name('movements.{movement}');
+Route::put('/movement/{movement}', 'MovementController@update')->name('movements.{movement}');
+Route::delete('/movement/{movement}', 'MovementController@delete')->name('movements.{movement}');
 
 
 

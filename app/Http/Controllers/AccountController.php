@@ -33,6 +33,7 @@ class AccountController extends Controller
     }
     public function edit(Account $account)
     {
+        return "edit";
         return view('account_edit', compact('account'));
     }
     public function update(Account $account)
@@ -81,7 +82,6 @@ class AccountController extends Controller
 
     public function account_user_delete (Account $account)
     {
-        return $account->id;
         $account->delete();
         return back();
     }
@@ -143,9 +143,6 @@ class AccountController extends Controller
 
         return redirect()->route('accounts/{user}', ['user' => $user->id]);
     }
-
-    asdfxcv
-    xcvxcvxcv
 }
 
 

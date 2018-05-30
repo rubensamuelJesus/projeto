@@ -61,9 +61,10 @@ class MovementController extends Controller
             $account->current_balance =  $account->current_balance + $request->value;
         }
         else{
-            $account->current_balance =  $account->current_balance - $request->value;
             $end_balance = $account->current_balance - $request->value;
+            $account->current_balance =  $account->current_balance - $request->value;
         }
+
 
         $movement_id = Movement_categories::where('name', request('category'))->first();
 
@@ -80,7 +81,7 @@ class MovementController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
         ]);
 
-        return redirect()->route('movements.{account}.index', ['account' => $account]);
+        return redirect()->route('movements.{account}', ['account' => $account]);
     }
 
     /**
