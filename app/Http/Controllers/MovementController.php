@@ -103,7 +103,7 @@ class MovementController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "edit";
     }
 
     /**
@@ -124,8 +124,9 @@ class MovementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Movement $movement)
     {
-        //
+        return "delete";
+        $movement->delete();
     }
 }

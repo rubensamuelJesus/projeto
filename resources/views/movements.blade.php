@@ -37,6 +37,16 @@
                                 <th>{{$movement->value}}</th>
                                 <th>{{$movement->type}}</th>
                                 <th>{{$movement->end_balance}}</th>
+                                 <th>
+                                    {{ Form::open(array('route' => ['movement.{movement}', $movement->id], 'class' => 'pull-right')) }}
+                                        {{ Form::hidden('_method', 'DELETE') }}
+                                        {{ Form::submit('Remove', array('class' => 'btn btn-warning')) }}
+                                    {{ Form::close() }}
+
+                                    <button class="btn btn-small btn-info pull-right" > 
+                                    <a href="{{route('movement.{movement}',$movement->id)}}" >Edit</a>
+                                    </button>
+                                </th>
                             </tr>
                         @endforeach
                     @else

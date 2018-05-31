@@ -40,6 +40,9 @@
     <link href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css') }}" rel="stylesheet"/>
 
+
+
+
 </head>
 <body>
 
@@ -239,8 +242,8 @@
     <!--  Notifications Plugin    -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
     <!--<script src="js/paper-dashboard.js"></script>

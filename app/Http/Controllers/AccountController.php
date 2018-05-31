@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Account;
 use App\Account_types;
 use App\Home;
+use Session;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,15 +49,35 @@ class AccountController extends Controller
         $account->code = request('code');
         $account->date = request('date');
         $account->description = request('description');
+        $start_balance_antigo = $account->start_balance;
         $account->start_balance = request('start_balance');
-
+        if( $account->start_balance != $start_balance_antigo){
+            $todos_movimentos = $account->movements;
+            $account->current_balance = $account->start_balance;
+            if($todos_movimentos->count() > 0){
+                foreach ($todos_movimentos as $movimento) {
+                    if ( strcasecmp( $movimento->type, 'Revenue') == 0 ){
+                        $movimento->end_balance = $account->current_balance + $movimento->value;
+                        $account->current_balance = $movimento->end_balance;
+                    }
+                    else{
+                        $movimento->end_balance = $account->current_balance - $movimento->value; 
+                        $account->current_balance = $movimento->end_balance;
+                    }
+                    $movimento->save();
+                }
+            }
+        }
         $account_type_id = Account_types::where('name', request('account_type'))->first(); 
 
         $account->account_type_id= $account_type_id->id;
 
-        $account->save();
 
-        return back();
+
+        $account->save();
+        $user = Auth::user();
+
+        return redirect()->route('accounts/{user}', ['user' => $user->id]);
     }
 
     public function accounts_user (User $user)
@@ -81,7 +102,13 @@ class AccountController extends Controller
 
     public function account_user_delete (Account $account)
     {
+        $movements_desta_account = $account->movements;
+        if($movements_desta_account->count() > 0){
+            Session::flash('message', 'A conta com o code:'.$account->code.' tem movimentos! Não pode ser apagada ');
+            return back();
+        }
         $account->delete();
+
         return back();
     }
 
