@@ -65,6 +65,13 @@ Route::get('/movement/{movement}', 'MovementController@edit')->name('movement.{m
 Route::put('/movement/{movement}', 'MovementController@update')->name('movement.{movement}');
 Route::delete('/movement/{movement}', 'MovementController@delete')->name('movement.{movement}');
 
+//rotas admin 
+//Route::get('/users','ProfilesController@index')->middleware('admin');
+Route::get('/users','AdminController@index')->name('users');
+Route::patch('/users/{user}/block','AdminController@block')->name('users.{user}.block');
+Route::patch('/users/{user}/unblock','AdminController@unblock')->name('users.{user}.unblock');
+Route::patch('/users/{user}/promote','AdminController@promote')->name('users.{user}.promote');
+Route::patch('/users/{user}/demote','AdminController@demote')->name('users.{user}.demote');
 
 
 

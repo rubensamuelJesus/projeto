@@ -113,7 +113,27 @@
                     </a>
                 </li>
                 @endif
-                <li class="">
+                @admin
+                <li>
+                    <a href="{{route('accounts/{user}',Auth::user()->id)}}" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Accounts</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('accounts/{user}/opened',Auth::user()->id)}}" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Accounts open</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('accounts/{user}/closed',Auth::user()->id)}}" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Accounts closed</p>
+                    </a>
+                </li>
+                @endadmin
+                <!--<li class="">
                     <a href="/estatistics" class="topicos">
                         <i class="ti-bar-chart-alt"></i>
                         <p>Estatistics</p>
@@ -131,7 +151,7 @@
                         <i class="ti-help-alt"></i>
                         <p>About Us</p>
                     </a>
-                </li>
+                </li>-->
             </ul>
     	</div>
     </div>
@@ -175,7 +195,7 @@
                             <li>
                                 <a href="login">
                                     <i class="ti-lock"></i>
-                                    <p>Admin......</p>
+                                    <p>Admin</p>
                                 </a>
                             </li>
                         @endadmin
