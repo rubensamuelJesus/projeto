@@ -51,7 +51,8 @@
                                 
                                 <th>{{$account_user_closed->created_at}}</th>
                                 <th>{{$account_user_closed->deleted_at}}</th>
-                                <th><form method="POST" action="/account/{{$account_user_closed->id}}/reopen">
+                                <th>
+                                    <form method="POST" action="/account/{{$account_user_closed->id}}/reopen">
                                 {{ csrf_field() }}
                                 {{ method_field('PATCH') }}
                                 {{ Form::submit("Open") }}</th>

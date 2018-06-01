@@ -20,10 +20,13 @@
                                 Value
                             </th>
                             <th>
+                                Start balance
+                            </th>
+                            <th>
                                 Type
                             </th>
                             <th>
-                                End_balance
+                                End balance
                             </th>
                         </tr>
                     </thead>
@@ -35,6 +38,7 @@
                                 <th>{{$movement->movement_categorie->name}}</th>
                                 <th>{{$movement->date}}</th>
                                 <th>{{$movement->value}}</th>
+                                <th>{{$movement->start_balance}}</th>
                                 <th>{{$movement->type}}</th>
                                 <th>{{$movement->end_balance}}</th>
                                  <th>
