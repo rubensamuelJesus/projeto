@@ -3,7 +3,7 @@
 <div class="tabs-x tabs-above">
     <ul id="myTab-kv-1" class="nav nav-tabs" role="tablist">
         <li class="active"><a href="#administrador" role="tab" data-toggle="tab"><i
-                class="glyphicon glyphicon-home"></i>Administrador</a></li>
+                class="glyphicon glyphicon-home"></i>Administrators</a></li>
         <li>
             <a href="#blocked_users" role="tab-kv" data-toggle="tab"><i class="glyphicon glyphicon-user"></i>
             Blocked users</a>
@@ -42,12 +42,12 @@
                             <tr>
                                 <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
                                 <th>{{$user->name}}</th>
-                                <th>Administrador</th>
+                                <th>Admin</th>
                             </tr>
                             @endisAdmin
                         @endforeach
                     @else
-                       <p>Nenhum Registo</p>
+                       <p>0 records</p>
                     @endif
                 </tbody>
             </table>  
@@ -64,12 +64,12 @@
                             <tr>
                                 <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
                                 <th>{{$user->name}}</th>
-                                <th>Blocked users</th>
+                                <th>Blocked</th>
                             </tr>
                             @endisBlocked
                         @endforeach
                     @else
-                       <p>Nenhum Registo</p>
+                       <p>0 records</p>
                     @endif
                 </tbody>
             </table>     
@@ -89,7 +89,7 @@
                             </tr>
                         @endforeach
                     @else
-                       <p>Nenhum Registo</p>
+                       <p>0 records</p>
                     @endif
                 </tbody>
             </table>     
@@ -109,7 +109,7 @@
                                 </tr>
                             @endforeach
                         @else
-                           <p>Nenhum Registo</p>
+                           <p>0 records</p>
                         @endif
                 </tbody>
             </table>     
@@ -125,15 +125,80 @@
                                 <tr>
                                     <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
                                     <th>{{$user->name}}</th>
-                                    <th>All</th>
+                                    @admin<th>
+                                        @if($user->blocked)
+                                            {{'blocked'}}
+                                            <th>
+                                                <form method="POST" action="/users/{{$user->id}}/unblock">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <button class="btn btn-small btn-success" type="submit">Unblock</button>
+                                                </form>
+                                            </th>
+                                        @else
+                                            {{'available'}}
+                                            <th>
+                                                <form method="POST" action="/users/{{$user->id}}/block">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <button class="pull-left btn btn-small btn-info" type="submit">Block</button>
+                                                </form>
+                                            </th>                                            
+                                        @endif
+                                        </th>
+
+                                        <th>@if($user->admin)
+                                            {{'Admin'}}
+                                            <th>
+                                                <form method="POST" action="/users/{{$user->id}}/demote">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <button class="pull-left btn btn-small btn-info " type="submit">Demote</button>
+                                                </form>
+                                            </th>
+                                        @else
+                                            {{'Normal'}}
+                                            <th>
+                                                <form method="POST" action="/users/{{$user->id}}/promote">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <button class="pull-left btn btn-small btn-success" type="submit">Promote</button>
+                                                </form>
+                                            </th>
+
+                                        @endif
+                                        </th>
+                                    @endadmin
                                 </tr>
                             @endforeach
                         @else
-                           <p>Nenhum Registo</p>
+                           <p>0 records</p>
                         @endif
                 </tbody>
             </table>     
         </div>
+        <!--@admin
+        <div class="tab-pane fade" id="all">
+            <table class="table table-striped">
+                @if(!$users_all == null)
+                    @include('thead')
+                @endif
+                <tbody>
+                        @if(!$users_all == null)
+                            @foreach ($users_all as $user)
+                                <tr>
+                                    <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
+                                    <th>{{$user->name}}</th>
+                                    <th>All</th>
+                                </tr>
+                            @endforeach
+                        @else
+                           <p>0 records</p>
+                        @endif
+                </tbody>
+            </table>     
+        </div>
+        @endadmin-->
     </div>
 </div>
 @endsection
