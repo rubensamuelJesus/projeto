@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Session;
 class AdminController extends Controller
 {
  	public function __construct()
@@ -22,12 +22,8 @@ class AdminController extends Controller
 
  	public function unblock(User $user)
     { 
-    	$me = Auth::user();
-    	if ($me->id != $user->id) {
-	        $user->blocked=0;
-			$user->save();
-    	}
-
+        $user->blocked=0;
+		$user->save();
         return redirect()->route('profiles');
     }
 
@@ -37,18 +33,16 @@ class AdminController extends Controller
     	if ($me->id != $user->id) {
 	        $user->blocked=1;
 	        $user->save();
+	        return redirect()->route('profiles');
 		}
-        return redirect()->route('profiles');
+    	Session::flash('message', 'Cannot change you own account administrative settings!');
+    	return back();
     }
 
  	public function promote(User $user)
     { 
-    	$me = Auth::user();
-    	if ($me->id != $user->id) {
-	        $user->admin=1;
-	        $user->save();
-            return redirect()->route('profiles');
-		}
+        $user->admin=1;
+        $user->save();
         return redirect()->route('profiles');
     } 	
 
@@ -58,9 +52,10 @@ class AdminController extends Controller
     	if ($me->id != $user->id) {
 	        $user->admin=0;
 	        $user->save();
+	        return redirect()->route('profiles');
     	}
-
-        return redirect()->route('profiles');
+    	Session::flash('message', 'Cannot change you own administrative settings!');
+        return back();
     }
 
     public function edit()
