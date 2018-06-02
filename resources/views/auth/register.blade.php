@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form method="POST" action= "{{route('register')}}" class="login100-form validate-form">
+<form method="POST" action= "{{route('register')}}" class="login100-form validate-form" enctype="multipart/form-data">
   {{csrf_field()}}
   <span class="login100-form-logo">
     <i class="zmdi zmdi-landscape"></i>

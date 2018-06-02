@@ -40,7 +40,7 @@
                         @foreach ($users_all as $user)
                             @isAdmin($user)
                             <tr>
-                                <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
+                                <th><img class="avatar border-white" src="/app/profiles/{{$user->profile_photo }}"></th>
                                 <th>{{$user->name}}</th>
                                 <th>Admin</th>
                             </tr>
