@@ -11,3 +11,11 @@ if (!function_exists('array_sort_by_column')) {
         array_multisort($reference_array, $direction, $array);
     }
 }
+if (!function_exists('deleteElement')) {
+	function deleteElement($element, &$array){
+	    $index = array_search($element, $array);
+	    if($index !== false){
+	        unset($array[$index]);
+	    }
+	}
+}

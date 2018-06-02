@@ -150,9 +150,66 @@ class MovementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Movement $movement)
     {
-        //
+        $this->validate(request(),[
+            'type' => 'required',
+            'date' => 'required',
+            'category' => 'required',/*'required|string|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',*/
+            'description' => 'required|string',
+            'value' => 'string',
+        ]);
+        $movement_id = Movement_categories::where('name', request('category'))->first();
+
+        $movement->type = request('type');
+        $movement->date = request('date');
+        $movement->value = request('value');
+        $movement->description = request('description');
+        $movement->movement_category_id = $movement_id->id;
+        $movement->save();
+
+        $account = $movement->account;
+        
+        $movements = $account->movements;
+        $previousMovement = null;
+        if($movements->reverse()->first()->id != $movement->id)
+        {    
+            foreach($movements as $struct) {
+                if ($movement->id == $struct->id) {
+                    $new_movement = $struct;
+                    break;
+                }
+                $previousMovement = $struct;
+            }       
+            if($previousMovement != null)
+                $account->current_balance = $previousMovement->end_balance;
+            else{
+                $previousMovement=$new_movement;
+                $account->current_balance = $account->start_balance;
+            }
+            $ver = 0;
+            foreach($movements as $struct) {
+                if ($new_movement->id == $struct->id || $ver == 1) {
+                    $ver = 1;
+                    if ( strcasecmp( $struct->type, 'Revenue') == 0 ){
+                        $struct->start_balance = $account->current_balance;  
+                        $struct->end_balance = $account->current_balance + $struct->value;
+                        $account->current_balance =  $account->current_balance + $struct->value;
+                    }
+                    else{
+                        $struct->start_balance = $account->current_balance;  
+                        $struct->end_balance = $account->current_balance - $struct->value;
+                        $account->current_balance =  $account->current_balance - $struct->value;
+                    }
+                    $struct->save();
+                }
+            }
+            
+        }
+        $account->save();
+        //return $new_movement.$previousMovement;
+        return redirect()->route('movements.{account}', ['account' => $account]);
+
     }
 
     /**
@@ -163,7 +220,56 @@ class MovementController extends Controller
      */
     public function delete(Movement $movement)
     {
-        return "delete";
-        $movement->delete();
+        $account = $movement->account;
+        
+        $movements = $account->movements;
+        $previousMovement = null;
+        foreach($movements as $struct) {
+            if ($movement->id == $struct->id) {
+                $new_movement = $struct;
+                break;
+            }
+            $previousMovement = $struct;
+        }
+
+
+        if ( strcasecmp( $movement->type, 'revenue') == 0 ){
+            $account->current_balance =  $account->current_balance - $movement->value;
+        }
+        else{
+            $account->current_balance =  $account->current_balance + $movement->value;
+        }
+        $movement->delete(); 
+        $movements = $account->movements;
+        $movements = $movements->keyBy('id');
+        $movements->forget($movement->id); 
+
+        $nao_ha = 0;
+        if($previousMovement != null)
+            $account->current_balance = $previousMovement->end_balance;
+        else{
+            $nao_ha = -1;
+            $previousMovement = $new_movement;
+            $account->current_balance = $account->start_balance;
+        }
+        $ver = 0;
+        foreach($movements as $struct) {
+            if ($previousMovement->id == $struct->id || $ver == 1 || $nao_ha == -1) {
+                if ( strcasecmp( $struct->type, 'revenue') == 0 ){
+                    $struct->start_balance = $account->current_balance;  
+                    $struct->end_balance = $struct->end_balance - $movement->value;
+                    $account->current_balance = $struct->end_balance;
+                }
+                else{
+                    $struct->start_balance = $account->current_balance;  
+                    $struct->end_balance = $struct->end_balance + $movement->value;
+                    $account->current_balance = $struct->end_balance;
+                }
+                $struct->save();
+            }
+        }
+        $account->save();
+        //return $new_movement.$previousMovement;
+        return redirect()->route('movements.{account}', ['account' => $account]);
     }
 }

@@ -58,10 +58,13 @@ class AccountController extends Controller
                 foreach ($todos_movimentos as $movimento) {
                     if ( strcasecmp( $movimento->type, 'Revenue') == 0 ){
                         $movimento->end_balance = $account->current_balance + $movimento->value;
+                        $movimento->start_balance = $account->current_balance;
                         $account->current_balance = $movimento->end_balance;
+
                     }
                     else{
                         $movimento->end_balance = $account->current_balance - $movimento->value; 
+                        $movimento->start_balance = $account->current_balance;
                         $account->current_balance = $movimento->end_balance;
                     }
                     $movimento->save();
