@@ -32,6 +32,10 @@ Route::post('login','Auth\LoginController@login')->name('login');
 
 Route::get('/me/profile', 'MeController@index')->name('me.profile');
 Route::put('/me/profile', 'MeController@update')->name('me.profile');
+Route::get('/userimage/{filename}',[
+	'uses' => 'MeController@getUserImage',
+	'as' => 'account.image'
+]);
 
 
 

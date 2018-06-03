@@ -40,7 +40,7 @@
                         @foreach ($users_all as $user)
                             @isAdmin($user)
                             <tr>
-                                <th><img class="avatar border-white" src="/app/profiles/{{$user->profile_photo }}"></th>
+                                <th><img src="{{ route('account.image', ['filename' => $user->profile_photo]) }}" alt="" class="img-responsive"></th>
                                 <th>{{$user->name}}</th>
                                 <th>Admin</th>
                             </tr>
@@ -68,7 +68,7 @@
                         @foreach ($users_all as $user)
                             @isBlocked($user)
                             <tr>
-                                <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
+                                <th><img src="{{ route('account.image', ['filename' => $user->profile_photo]) }}" alt="" class="avatar border-white"></th>
                                 <th>{{$user->name}}</th>
                                 <th>Blocked</th>
                             </tr>
@@ -89,7 +89,7 @@
                     @if(!$associated_members == null)
                         @foreach ($associated_members as $associated_member)
                             <tr>
-                                <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
+                                <th><img src="{{ route('account.image', ['filename' => $user->profile_photo]) }}" alt="" class="avatar border-white"></th>
                                 <th>{{$associated_member->name}}</th>
                                 <th>Associate</th>
                             </tr>
@@ -109,7 +109,7 @@
                         @if(!$associated_members_belong == null)
                             @foreach ($associated_members_belong as $associated_member_belong)
                                 <tr>
-                                    <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
+                                    <th><img src="{{ route('account.image', ['filename' => $user->profile_photo]) }}" alt="" class="avatar border-white"></th>
                                     <th>{{$associated_member_belong->name}}</th>
                                     <th>Associate-of</th>
                                 </tr>
@@ -129,7 +129,7 @@
                         @if(!$users_all == null)
                             @foreach ($users_all as $user)
                                 <tr>
-                                    <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
+                                    <th><img src="{{ route('account.image', ['filename' => $user->profile_photo]) }}" alt="" class="avatar border-white"></th>
                                     <th>{{$user->name}}</th>
                                     @admin<th>
                                         @if($user->blocked)
