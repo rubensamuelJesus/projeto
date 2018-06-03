@@ -1,6 +1,9 @@
 @extends('template')
 @section('content')
+<<<<<<< HEAD
 
+=======
+>>>>>>> 10812d1fd64c7604f2202b8ec4402d58b6405575
 <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -8,8 +11,9 @@
                         <div class="card card-user">
                             <div class="content">
                                 <div class="author">
-                                  <img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>">
+                                  <img class="avatar border-white" src="{!!storage_path().'/app/profiles/182a62dc919e125738761477ba092283.jpg'!!}">
                                   <h4 class="title">{{$user->name}}</h4>
+
                                 </div>
                             </div>
                         </div>
@@ -54,6 +58,11 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 {{Form::close()}}
+                                @if($errors->all())
+    @foreach($errors->all() as $error)
+      <span class="input100">{{$error}}</span>
+    @endforeach
+  @endif
                             </div>
                         </div>
                     </div>

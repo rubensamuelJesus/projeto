@@ -85,13 +85,6 @@ class ProfilesController extends Controller
             $associated_members_belong = User::select()
                     ->whereIn('id', $ids_associated_members_belong)
                     ->get();
-
-            /*
-            foreach ($ids_associated_members_belong as $id_associated_members_belong)
-            {
-                $ids_associated_members_belong[] = $associate->main_user_id;
-            } 
-             */
         }
         //return $associated_members_belong;
         //return "vazio";

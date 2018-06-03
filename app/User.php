@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function accounts()
     {
-        return $this->hasMany('App\Accounts');
+        return $this->hasMany('App\Account','owner_id');
     } 
 
     public function isAdmin()

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use Request;
+use App\Associate_members;
+use Illuminate\Http\Request;
 
 class MeController extends Controller
 {
@@ -22,6 +23,70 @@ class MeController extends Controller
     {
         $user = Auth::user();
         return view('me.profile', compact('user'));
+    }
+
+    public function associates()
+    {
+        $user = Auth::user();
+        //variavel de teste ----- $user_teste = User::find(28);
+        $ids_associated_members = null;
+        $associated_members = null;
+
+        if($user->associate_members->count()){
+            foreach ($user->associate_members as $associate)
+            {
+                $ids_associated_members[] = $associate->associated_user_id;
+            } 
+            $associated_members = User::select()
+                    ->whereIn('id', $ids_associated_members)
+                    ->get(); 
+        }
+        return view('me.associates', compact('user','associated_members'));
+    }
+
+    public function associateof()
+    {
+        $user = Auth::user();
+        //variavel de teste ----- $user_teste = User::find(28);
+        $ids_associated_belong = null;
+        $associated_members_belong = null;
+
+        $user_associated_member = Associate_members::select()
+                    ->where('associated_user_id',$user->id)
+                    ->get(); 
+
+        function deleteElement($element, &$array){
+            $index = array_search($element, $array);
+            if($index !== false){
+                unset($array[$index]);
+            }
+        }
+                    
+        if($user_associated_member->count()){
+            foreach ($user_associated_member as $associate)
+            {
+                $ids_associated_members_belong[] = $associate->main_user_id;
+            } 
+
+            $associated_members_belong = User::select()
+                    ->whereIn('id', $ids_associated_members_belong)
+                    ->get();
+
+            /*foreach ($associated_members_belong as $associated_member_belong)
+
+                foreach ($associated_member_belong->associate_members as $associated_member_belong1) {
+                    {
+                    $ids_associated_members_belong[] = $associated_member_belong1->associated_user_id;
+                }
+            }
+            $ids_associated_members_belong = array_unique($ids_associated_members_belong);
+            deleteElement($user->id, $ids_associated_members_belong);
+
+            $associated_members_belong = User::select()
+                    ->whereIn('id', $ids_associated_members_belong)
+                    ->get();*/
+        }
+        return view('me.associates-of', compact('user','associated_members_belong'));
     }
 
 
@@ -75,15 +140,46 @@ class MeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request)
     {
-        $user = Auth::User();
+        $user = Auth::user();
+        /*$user = Auth::User();
         $name = $request->input('name');
         $email = $request->input('email');
         $profile_photo = $request->input('profile_photo');
         $phone = $request->input('phone');
         $user->save();
-        return redirect()->back();
+        return redirect()->back();*/
+        /*$this->validate(request(), [
+            'name' => 'required|regex:/^[\pL\s]+$/u',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',
+            'phone' => 'required',
+            'profile_photo' => 'required'
+        ]);
+
+        User::save([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'profile_photo' => $request->profile_photo,
+        ]);*/
+        $this->validate(request(), [
+            'name' => 'required|regex:/^[\pL\s]+$/u',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required',
+            'profile_photo' => 'required'
+        ]);
+
+        $user->name = request('name');
+        $user->email = request('email');
+        $user->phone = request('phone');
+        $user->profile_photo = request('profile_photo');
+
+        $user->save();
+
+        return back();
 
     }
 
