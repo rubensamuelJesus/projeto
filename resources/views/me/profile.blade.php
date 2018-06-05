@@ -7,8 +7,9 @@
                         <div class="card card-user">
                             <div class="content">
                                 <div class="author">
-                                  <img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>">
+                                  <img src="{{ route('account.image', ['filename' => $user->profile_photo]) }}" alt="" class="img-responsive">
                                   <h4 class="title">{{$user->name}}</h4>
+
                                 </div>
                             </div>
                         </div>
@@ -19,7 +20,7 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                               {{Form::open(['route' => 'me.profile', 'method' => 'put'])}}
+                               {{Form::open(['route' => 'me.profile', 'method' => 'PUT', 'files' => true])}}
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -41,6 +42,7 @@
                                                 <input type="text" class="form-control border-input" placeholder="Username" name="phone" value="{{$user->phone}}">
                                             </div>
                                         </div>
+                                        
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Photo</label>

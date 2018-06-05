@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Image;
 
 class RegisterController extends Controller
 {
@@ -73,16 +74,27 @@ class RegisterController extends Controller
             'password' => 'required',/*'required|string|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',*/
             'password_confirmation' => 'required|string',
             'phone' => 'string',
-            'profile_photo' => 'string',
+            'profile_photo' => 'sometimes|image',
         ]);
-
-        User::create([
+        
+        //$filename = "nada";
+        if($request->hasFile('profile_photo')){
+            $profile_photo = $request->file('profile_photo');
+            $filename = time() . '.' . $profile_photo->getClientOriginalExtension();
+            $location = storage_path('app/profiles/'. $filename);
+            //$location = storage_path('profiles/'. $filename);
+            Image::make($profile_photo)->resize(300, 300)->save($location);
+        }
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
-            'profile_photo' => $request->profile_photo,
+            'profile_photo' => $filename,
         ]);
+
+        //$user->profile_photo = $filename;
+        //$user->save();
 
         return redirect('/login');
     }
