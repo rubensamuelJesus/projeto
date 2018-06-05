@@ -25,6 +25,9 @@
   src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
 }
 
+img.img_profile{
+  padding-top: 40px !important;
+}
 
 
 

@@ -74,14 +74,16 @@ class RegisterController extends Controller
             'password' => 'required',/*'required|string|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',*/
             'password_confirmation' => 'required|string',
             'phone' => 'string',
-            //'profile_photo' => 'string',
+            'profile_photo' => 'sometimes|image',
         ]);
         
         //$filename = "nada";
         if($request->hasFile('profile_photo')){
             $profile_photo = $request->file('profile_photo');
             $filename = time() . '.' . $profile_photo->getClientOriginalExtension();
-            Image::make($profile_photo)->resize(300, 300)->save(storage_path('/app/profiles/' . $filename ) );
+            $location = storage_path('app/profiles/'. $filename);
+            //$location = storage_path('profiles/'. $filename);
+            Image::make($profile_photo)->resize(300, 300)->save($location);
         }
         $user = User::create([
             'name' => $request->name,

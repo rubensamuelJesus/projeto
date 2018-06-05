@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Associate_members;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Image;
+
 
 class MeController extends Controller
 {
@@ -23,6 +28,14 @@ class MeController extends Controller
     {
         $user = Auth::user();
         return view('me.profile', compact('user'));
+    }
+
+    public function getUserImage($filename)
+    {
+
+        //$file = Storage::disk('local')->get($filename);
+        ////return new Response($file, 200);
+        return response()->file(storage_path('app/profiles/'.$filename));
     }
 
     public function associates()
@@ -165,22 +178,40 @@ class MeController extends Controller
             'phone' => $request->phone,
             'profile_photo' => $request->profile_photo,
         ]);*/
-        $this->validate(request(), [
-            'name' => 'required|regex:/^[\pL\s]+$/u',
-            'email' => 'required|email|unique:users,email',
-            'phone' => 'required',
-            'profile_photo' => 'required'
+        $credentials = $this->validate(request(),[
+            'name' => 'required|string|regex:/^[\pL\s]+$/u',
+            'email' => 'required|email|string|unique:users,email',
+            'phone' => 'string',
+            'profile_photo' => 'image',
         ]);
 
         $user->name = request('name');
         $user->email = request('email');
         $user->phone = request('phone');
-        $user->profile_photo = request('profile_photo');
+        //$user->profile_photo = request('profile_photo');
+
+        if($request->hasFile('profile_photo')){
+            
+            //add nova foto
+            
+            $profile_photo = $request->file('profile_photo');
+            $filename = time() . '.' . $profile_photo->getClientOriginalExtension();
+            $oldFilename = $user->profile_photo;
+            $location = storage_path('app/profiles/'. $filename);
+            //$location = storage_path('profiles/'. $filename);
+            Image::make($profile_photo)->resize(300, 300)->save($location);
+            
+            //update database
+            $user->profile_photo = $filename;
+
+            //Delete foto antiga
+            unlink(storage_path('app/profiles/'.$oldFilename));
+        }
+
+        
 
         $user->save();
-
         return back();
-
     }
 
     /**
