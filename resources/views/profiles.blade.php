@@ -26,6 +26,7 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
+
             </nav>
         </li>
     </ul>
@@ -42,7 +43,47 @@
                             <tr>
                                 <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
                                 <th>{{$user->name}}</th>
-                                <th>Admin</th>
+                                @admin
+                                <th>{{$user->email}}</th>
+                                @endadmin
+                                @isBlocked($user)
+                                    <th>{{'Blocked'}}
+                                    @admin
+                                        <th>
+                                            <form method="POST" action="/users/{{$user->id}}/unblock">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PATCH') }}
+                                                <button class="btn btn-small btn-success" type="submit">Unblock</button>
+                                            </form>
+                                        </th>
+                                    @endadmin
+                                    </th>
+                                @else
+                                <th>
+                                    {{'Available'}}
+                                    @admin
+                                        <th>
+                                            <form method="POST" action="/users/{{$user->id}}/block">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PATCH') }}
+                                                <button class="pull-left btn btn-small btn-info" type="submit">Block</button>
+                                            </form>
+                                        </th>
+                                    @endadmin
+                                    </th>
+                                @endisBlocked
+
+                            @admin
+                                        <th>
+                                            {{'Admin'}}
+                                            <th>
+                                                <form method="POST" action="/users/{{$user->id}}/demote">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <button class="pull-left btn btn-small btn-info " type="submit">Demote</button>
+                                                </form>
+                                            </th>
+                                    @endadmin
                             </tr>
                             @endisAdmin
                         @endforeach
@@ -70,7 +111,45 @@
                             <tr>
                                 <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
                                 <th>{{$user->name}}</th>
+                                @admin
+                                <th>{{$user->email}}</th>
+                                @endadmin
                                 <th>Blocked</th>
+                                    @admin<th>
+                                            <th>
+                                                <form method="POST" action="/users/{{$user->id}}/unblock">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <button class="btn btn-small btn-success" type="submit">Unblock</button>
+                                                </form>
+                                            </th>
+                                        </th>
+                                    @endadmin
+
+                                        <th>@isAdmin($user)
+                                            {{'Admin'}}
+                                                @admin
+                                                    <th>
+                                                        <form method="POST" action="/users/{{$user->id}}/demote">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('PATCH') }}
+                                                            <button class="pull-left btn btn-small btn-info " type="submit">Demote</button>
+                                                        </form>
+                                                    </th>
+                                                @endadmin
+                                            @else
+                                                {{'Normal'}}
+                                                @admin
+                                                    <th>
+                                                        <form method="POST" action="/users/{{$user->id}}/promote">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('PATCH') }}
+                                                            <button class="pull-left btn btn-small btn-success" type="submit">Promote</button>
+                                                        </form>
+                                                    </th>
+                                                @endadmin
+                                            @endisAdmin
+                                        </th>
                             </tr>
                             @endisBlocked
                         @endforeach
@@ -91,7 +170,61 @@
                             <tr>
                                 <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
                                 <th>{{$associated_member->name}}</th>
+                                @admin
+                                <th>{{$user->email}}</th>
+                                @endadmin
                                 <th>Associate</th>
+                                @isBlocked($user)
+                                    <th>{{'Blocked'}}
+                                        @admin<th>     
+                                                <th>
+                                                    <form method="POST" action="/users/{{$user->id}}/unblock">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('PATCH') }}
+                                                        <button class="btn btn-small btn-success" type="submit">Unblock</button>
+                                                    </form>
+                                                </th>
+                                        @endadmin
+                                    </th>
+                                @else
+                                    <th>{{'available'}}
+                                        @admin
+                                            <th>
+                                                <form method="POST" action="/users/{{$user->id}}/block">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <button class="pull-left btn btn-small btn-info" type="submit">Block</button>
+                                                </form>
+                                            </th>  
+                                        @endadmin                                          
+                                    </th>
+                                @endisBlocked
+
+                                @isAdmin($user)
+                                    <th>{{'Admin'}}
+                                        @admin<th>     
+                                                <th>
+                                                    <form method="POST" action="/users/{{$user->id}}/demote">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('PATCH') }}
+                                                        <button class="pull-left btn btn-small btn-info " type="submit">Demote</button>
+                                                    </form>
+                                                </th>
+                                        @endadmin
+                                    </th>
+                                @else
+                                    <th>{{'Normal'}}
+                                        @admin
+                                            <th>
+                                                <form method="POST" action="/users/{{$user->id}}/promote">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('PATCH') }}
+                                                    <button class="pull-left btn btn-small btn-success" type="submit">Promote</button>
+                                                </form>
+                                            </th>  
+                                        @endadmin                                          
+                                    </th>
+                                @endisAdmin
                             </tr>
                         @endforeach
                     @else
@@ -111,7 +244,61 @@
                                 <tr>
                                     <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
                                     <th>{{$associated_member_belong->name}}</th>
+                                    @admin
+                                    <th>{{$user->email}}</th>
+                                    @endadmin
                                     <th>Associate-of</th>
+                                    @isBlocked($user)
+                                        <th>{{'Blocked'}}
+                                            @admin<th>     
+                                                    <th>
+                                                        <form method="POST" action="/users/{{$user->id}}/unblock">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('PATCH') }}
+                                                            <button class="btn btn-small btn-success" type="submit">Unblock</button>
+                                                        </form>
+                                                    </th>
+                                            @endadmin
+                                        </th>
+                                    @else
+                                        <th>{{'available'}}
+                                            @admin
+                                                <th>
+                                                    <form method="POST" action="/users/{{$user->id}}/block">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('PATCH') }}
+                                                        <button class="pull-left btn btn-small btn-info" type="submit">Block</button>
+                                                    </form>
+                                                </th>  
+                                            @endadmin                                          
+                                        </th>
+                                    @endisBlocked
+
+                                    @isAdmin($user)
+                                        <th>{{'Admin'}}
+                                            @admin<th>     
+                                                    <th>
+                                                        <form method="POST" action="/users/{{$user->id}}/demote">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('PATCH') }}
+                                                            <button class="pull-left btn btn-small btn-info " type="submit">Demote</button>
+                                                        </form>
+                                                    </th>
+                                            @endadmin
+                                        </th>
+                                    @else
+                                        <th>{{'Normal'}}
+                                            @admin
+                                                <th>
+                                                    <form method="POST" action="/users/{{$user->id}}/promote">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('PATCH') }}
+                                                        <button class="pull-left btn btn-small btn-success" type="submit">Promote</button>
+                                                    </form>
+                                                </th>  
+                                            @endadmin                                          
+                                        </th>
+                                    @endisAdmin
                                 </tr>
                             @endforeach
                         @else
@@ -131,6 +318,9 @@
                                 <tr>
                                     <th><img class="avatar border-white" src="<?php echo asset("storage/profiles/$user->profile_photo")?>"></th>
                                     <th>{{$user->name}}</th>
+                                    @admin
+                                    <th>{{$user->email}}</th>
+                                    @endadmin
                                     @admin<th>
                                         @if($user->blocked)
                                             {{'blocked'}}

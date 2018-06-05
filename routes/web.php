@@ -23,7 +23,7 @@ Route::view('register', 'register');*/
 
 Route::get('/','HomeController@index')->name('/');
 Route::get('/table','HomeController@index')->name('/');
-Route::get('profiles', 'ProfilesController@index')->name('profiles');
+Route::get('/profiles', 'ProfilesController@index')->name('profiles');
 
 //Login routes
 Route::get('login', 'Auth\LoginController@showLoginForm');
