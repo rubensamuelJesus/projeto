@@ -16,7 +16,7 @@
 
                         <span class="login100-form-title p-b-34 p-t-27">New Password</span>
                         <div class="wrap-input100 validate-input" data-validate = "Enter email">
-                            <input id="email" type="email" class="input100 name="email" value="{{ old('email') }}" placeholder="Email">
+                            <input id="email" type="email" class="input100" name="email" value="{{ old('email') }}" placeholder="Email">
                             <span class="focus-input100" data-placeholder="&#xf15a;"></span>
                         </div> 
 
@@ -26,7 +26,6 @@
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
-                        </div>
                         </div>
                         
                         <div class="wrap-input100 validate-input" data-validate="Enter password">
@@ -46,7 +45,7 @@
                             <input id="password-confirm" class="input100" type="password" name="password_confirmation" placeholder="Confirm password">
                             <span class="focus-input100" data-placeholder="&#xf191;"></span>
                         </div>
-
+                        
                         @if (session('status'))
                          <div class="input100">
                             {{ session('status') }}

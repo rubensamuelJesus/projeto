@@ -23,12 +23,13 @@ Route::view('register', 'register');*/
 
 Route::get('/','HomeController@index')->name('/');
 Route::get('/table','HomeController@index')->name('/');
-Route::get('profiles', 'ProfilesController@index')->name('profiles');
+Route::get('/profiles', 'ProfilesController@index')->name('profiles');
 
 //Login routes
 Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login','Auth\LoginController@login')->name('login');
 
+Route::get('account/{user}', 'AccountController@index')->name('accounts{user}');
 
 Route::get('/me/profile', 'MeController@index')->name('me.profile');
 Route::put('/me/profile', 'MeController@update')->name('me.profile');
@@ -36,7 +37,6 @@ Route::get('/userimage/{filename}',[
 	'uses' => 'MeController@getUserImage',
 	'as' => 'account.image'
 ]);
-
 
 
 Route::get('/me/associates', 'MeController@associates')->name('me.associates');
@@ -81,6 +81,7 @@ Route::patch('/users/{user}/demote','AdminController@demote')->name('users.{user
 
 
 /*Route::get('account/{user}', 'AccountController@index')->name('accounts{user}');
+>>>>>>> 10812d1fd64c7604f2202b8ec4402d58b6405575
 Route::get('account/{user}/opened', 'AccountController@index')->name('accounts{user}');
 Route::get('account/{user}/closed', 'AccountController@index')->name('accounts{user}');
 Route::delete('account/{closed}', 'AccountController@index')->name('accounts{user}');
@@ -90,10 +91,6 @@ Route::post('account', 'AccountController@index')->name('accounts{user}');
 Route::put('account/{closed}', 'AccountController@index')->name('accounts{user}');
 //Route::get('profiles', 'ProfilesController@index')->name('profiles');
 //Route::get('profiles', 'ProfilesController@index')->name('profiles');*/
-
-
-
-
 
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -111,3 +108,4 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::patch('/me/password', 'MeController@updatePass')->name('me.password');

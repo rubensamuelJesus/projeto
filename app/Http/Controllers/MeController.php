@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use Session;
 use Image;
 
 
@@ -223,5 +225,41 @@ class MeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updatePass(Request $request)
+    {
+        $user = Auth::user();
+
+        $credentials = $this->validate(request(),[
+            'oldpassword' => 'required|string',
+            'newpassword' => 'required|string|min:6',
+            'confirmpassword' => 'required|string',
+        ]);
+
+        $old = $user->password;
+        $old2 = request('oldpassword');
+        $new = request('newpassword');
+        $new2 = request('confirmpassword');
+        if($old != $old2 ){
+            Session::flash('message','Password is not the same!');
+            return back();
+        }
+
+        if($new != $new2 ){
+            Session::flash('message','New Password doesnt match!');
+            return back();
+        }
+
+        if ($old == $new ){
+            Session::flash('message','Password are the same!');
+            return back();
+        }
+        else{
+            $new = Hash::make($new);
+            $user->password = $new;
+        }
+        $user->save();
+        return back();
     }
 }

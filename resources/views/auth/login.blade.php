@@ -24,8 +24,8 @@
   @endif
 
   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="remember" name="remember">
-    <label class="form-check-label" for="remember">Remember me</label>
+    <input type="checkbox" class="form-check-input" id="remember" name="remember"></input>
+      <span class="txt2" for="remember">Remember me</span>
   </div>
 
   <div class="container-login100-form-btn">
@@ -33,13 +33,13 @@
     <button class="login100-form-btn">Login</button>
   </div>
 
-  <div class="text-center p-t-90">
+  <div class="text-center p-t-40">
     <span class="txt2">Not a member?</span>
     <a class="txt1" href="/register">Sign up now</a>
   </div>
 
-  <div class="text-center p-t-5">
-    <a class="txt2" href="password/reset">Forget Password?</a>
+  <div class="text-center p-t-15">
+    <a class="txt1" href="password/reset">Reset Password</a>
   </div>
 </form>
 @endsection
