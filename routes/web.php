@@ -26,13 +26,14 @@ Route::get('/table','HomeController@index')->name('/');
 Route::get('/profiles', 'ProfilesController@index')->name('profiles');
 
 //Login routes
-Route::get('login', 'Auth\LoginController@showLoginForm');
-Route::post('login','Auth\LoginController@login')->name('login');
+Route::get('/login', 'Auth\LoginController@showLoginForm');
+Route::post('/login','Auth\LoginController@login')->name('login');
 
-Route::get('account/{user}', 'AccountController@index')->name('accounts{user}');
+Route::get('/account/{user}', 'AccountController@index')->name('accounts{user}');
 
 Route::get('/me/profile', 'MeController@index')->name('me.profile');
 Route::put('/me/profile', 'MeController@update')->name('me.profile');
+
 Route::get('/userimage/{filename}',[
 	'uses' => 'MeController@getUserImage',
 	'as' => 'account.image'
@@ -45,14 +46,14 @@ Route::get('/me/associate-of', 'MeController@associateof')->name('me.associate-o
 
 Route::post('/account', 'AccountController@store')->name('account');
 Route::get('/account', 'AccountController@index')->name('account');
-Route::get('/accounts/{user}', 'AccountController@accounts_user')->name('accounts/{user}');
+Route::get('/accounts/{user}', 'AccountController@accounts_user')->name('accounts/{user}')->middleware('CheckUserAuthentication');
 
-Route::get('/accounts/{user}/opened', 'AccountController@accounts_user_open')->name('accounts/{user}/opened');
-Route::get('/accounts/{user}/closed', 'AccountController@accounts_user_closed')->name('accounts/{user}/closed');
+Route::get('/accounts/{user}/opened', 'AccountController@accounts_user_open')->name('accounts/{user}/opened')->middleware('CheckUserAuthentication');
+Route::get('/accounts/{user}/closed', 'AccountController@accounts_user_closed')->name('accounts/{user}/closed')->middleware('CheckUserAuthentication');
 
 
-Route::patch('/account/{account}/close', 'AccountController@account_user_close');
-Route::patch('/account/{account}/reopen', 'AccountController@account_user_reopen');
+Route::patch('/account/{account}/close', 'AccountController@account_user_close')->middleware('CheckUserAuthentication');
+Route::patch('/account/{account}/reopen', 'AccountController@account_user_reopen')->middleware('CheckUserAuthentication');
 
 Route::delete('/account/{account}', 'AccountController@account_user_delete');
 
@@ -93,8 +94,8 @@ Route::put('account/{closed}', 'AccountController@index')->name('accounts{user}'
 //Route::get('profiles', 'ProfilesController@index')->name('profiles');*/
 
 // Registration Routes...
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register', 'Auth\RegisterController@register');
 
 // Logout Routes...
 Route::post('logout','Auth\LoginController@logout')->name('logout');
