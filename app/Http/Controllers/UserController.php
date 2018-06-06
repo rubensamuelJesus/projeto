@@ -41,6 +41,10 @@ class UserController extends Controller
             'profile_photo' => $request->profile_photo,
         ]);
 
+        $ver = true;
+        if($ver)
+            $validator->getMessageBag()->add('sim', 'so pk sim');
+
         return back();
     }
 
