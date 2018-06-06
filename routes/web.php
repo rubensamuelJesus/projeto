@@ -29,12 +29,7 @@ Route::get('/profiles', 'ProfilesController@index')->name('profiles');
 Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login','Auth\LoginController@login')->name('login');
 
-<<<<<<< HEAD
-Route::get('me/profile', 'MeController@index')->name('me.profile');
-Route::put('me/profile', 'MeController@update')->name('me.profile');
-
 Route::get('account/{user}', 'AccountController@index')->name('accounts{user}');
-=======
 
 Route::get('/me/profile', 'MeController@index')->name('me.profile');
 Route::put('/me/profile', 'MeController@update')->name('me.profile');
@@ -42,7 +37,6 @@ Route::get('/userimage/{filename}',[
 	'uses' => 'MeController@getUserImage',
 	'as' => 'account.image'
 ]);
-
 
 
 Route::get('/me/associates', 'MeController@associates')->name('me.associates');
@@ -114,3 +108,4 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::patch('/me/password', 'MeController@updatePass')->name('me.password');

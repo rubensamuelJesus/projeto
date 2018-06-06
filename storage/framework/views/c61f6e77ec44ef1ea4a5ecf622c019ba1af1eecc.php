@@ -40,6 +40,9 @@
     <link href="<?php echo e(asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css')); ?>" rel="stylesheet"/>
     <link href="<?php echo e(asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')); ?>" rel="stylesheet"/>
 
+
+
+
 </head>
 <body>
 
@@ -72,12 +75,65 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="topicos">
+                    <a href="<?php echo e(route('me.associates')); ?>" class="topicos">
+                        <i class="ti-list"></i>
+                        <p>Associates</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo e(route('me.associate-of')); ?>" class="topicos">
+                        <i class="ti-list"></i>
+                        <p>Associate-of</p>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="<?php echo e(route('account')); ?>" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Create Account</p>
+                    </a>
+                </li>
+                <?php if(Auth::check()): ?>
+                <li>
+                    <a href="<?php echo e(route('accounts/{user}',Auth::user()->id)); ?>" class="topicos">
                         <i class="ti-view-list-alt"></i>
                         <p>Accounts</p>
                     </a>
                 </li>
-                <li class="">
+                <li>
+                    <a href="<?php echo e(route('accounts/{user}/opened',Auth::user()->id)); ?>" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Accounts open</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo e(route('accounts/{user}/closed',Auth::user()->id)); ?>" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Accounts closed</p>
+                    </a>
+                </li>
+                <?php endif; ?>
+                <?php if (\Illuminate\Support\Facades\Blade::check('admin')): ?>
+                <li>
+                    <a href="<?php echo e(route('accounts/{user}',Auth::user()->id)); ?>" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Accounts</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo e(route('accounts/{user}/opened',Auth::user()->id)); ?>" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Accounts open</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo e(route('accounts/{user}/closed',Auth::user()->id)); ?>" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Accounts closed</p>
+                    </a>
+                </li>
+                <?php endif; ?>
+                <!--<li class="">
                     <a href="/estatistics" class="topicos">
                         <i class="ti-bar-chart-alt"></i>
                         <p>Estatistics</p>
@@ -95,7 +151,7 @@
                         <i class="ti-help-alt"></i>
                         <p>About Us</p>
                     </a>
-                </li>
+                </li>-->
             </ul>
     	</div>
     </div>
@@ -139,7 +195,7 @@
                             <li>
                                 <a href="login">
                                     <i class="ti-lock"></i>
-                                    <p>Admin......</p>
+                                    <p>Admin</p>
                                 </a>
                             </li>
                         <?php endif; ?>
@@ -148,7 +204,7 @@
                             
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <p><?php echo e($user->name); ?></p>
+                                    <p><?php echo e(Auth::user()->name); ?></p>
                                     <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
@@ -158,7 +214,7 @@
                                 <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    <?php echo e(__('Logoutaaaaaa')); ?>
+                                    <?php echo e(__('Logout')); ?>
 
                                 </a>
 
@@ -208,8 +264,8 @@
     <!--  Notifications Plugin    -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
     <!--<script src="js/paper-dashboard.js"></script>
