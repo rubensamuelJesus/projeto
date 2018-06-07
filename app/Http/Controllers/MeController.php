@@ -241,26 +241,26 @@ class MeController extends Controller
         $old_form = request('oldpassword');
         $new_pass = request('newpassword');
         $new_conf = request('confirmpassword');
-        //if($old_pass != $old_form ){
-        if (Hash::check($old_pass, $old_form))
+        
+        if (Hash::check($old_form, $old_pass)){
+            if ($old_form == $new_pass ){
+                    Session::flash('message','Password are the same!');
+                    return back();
+            }else{
+                if ($new_pass != $new_conf ){
+                    Session::flash('message','New Password doesnt match!');
+                    return back();
+                }
+                else{
+                    $new_pass = Hash::make($new_pass);
+                    $user->password = $new_pass;
+                    $user->save();
+                    return back();
+                }   
+            }
+        }else{
             Session::flash('message','Password is not the same!');
             return back();
         }
-
-        if($new_pass != $new_conf ){
-            Session::flash('message','New Password doesnt match!');
-            return back();
-        }
-
-        if ($old_form == $new_pass ){
-            Session::flash('message','Password are the same!');
-            return back();
-        }
-        else{
-            $new = Hash::make($new);
-            $user->password = $new;
-        }
-        $user->save();
-        return back();
     }
 }

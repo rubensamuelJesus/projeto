@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "488e2d0f406fb140889c3ad78380ff02",
@@ -1483,18 +1483,6 @@
         },
         {
             "name": "paragonie/random_compat",
-<<<<<<< HEAD
-            "version": "v2.0.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "cbe0b11b78140bc62a921fec33a730fdaa6540d6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/cbe0b11b78140bc62a921fec33a730fdaa6540d6",
-                "reference": "cbe0b11b78140bc62a921fec33a730fdaa6540d6",
-=======
             "version": "v2.0.14",
             "source": {
                 "type": "git",
@@ -1505,7 +1493,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/paragonie/random_compat/zipball/f6ce7dd93628088e1017fb5dd73b0b9fec7df9e5",
                 "reference": "f6ce7dd93628088e1017fb5dd73b0b9fec7df9e5",
->>>>>>> dfde9225f1d4f1c1b041667b364511e45a37612e
                 "shasum": ""
             },
             "require": {
@@ -1541,11 +1528,7 @@
                 "pseudorandom",
                 "random"
             ],
-<<<<<<< HEAD
-            "time": "2018-06-06T05:04:48+00:00"
-=======
             "time": "2018-06-06T17:40:22+00:00"
->>>>>>> dfde9225f1d4f1c1b041667b364511e45a37612e
         },
         {
             "name": "psr/container",
