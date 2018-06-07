@@ -237,21 +237,22 @@ class MeController extends Controller
             'confirmpassword' => 'required|string',
         ]);
 
-        $old = $user->password;
-        $old2 = request('oldpassword');
-        $new = request('newpassword');
-        $new2 = request('confirmpassword');
-        if($old != $old2 ){
+        $old_pass = $user->password;
+        $old_form = request('oldpassword');
+        $new_pass = request('newpassword');
+        $new_conf = request('confirmpassword');
+        //if($old_pass != $old_form ){
+        if (Hash::check($old_pass, $old_form))
             Session::flash('message','Password is not the same!');
             return back();
         }
 
-        if($new != $new2 ){
+        if($new_pass != $new_conf ){
             Session::flash('message','New Password doesnt match!');
             return back();
         }
 
-        if ($old == $new ){
+        if ($old_form == $new_pass ){
             Session::flash('message','Password are the same!');
             return back();
         }
