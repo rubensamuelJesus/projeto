@@ -22,8 +22,8 @@
         </li>
         <li>
             <nav class="navbar navbar-light bg-light right">
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form method="GET" action="/users">
+                    <input class="form-control mr-sm-2" name = "name" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
 
@@ -33,7 +33,7 @@
     <div id="myTabContent-kv-1" class="tab-content">
         <div class="tab-pane fade in active" id="administrador">
             <table class="table table-striped">
-                @if(!$users_all == null)
+                @if(!isset($users_all) AND !$users_all == null)
                     @include('thead')
                 @endif    
                 <tbody>
