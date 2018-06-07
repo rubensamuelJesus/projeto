@@ -50,6 +50,10 @@
                                     <button class="btn btn-small btn-info pull-right" > 
                                     <a href="{{route('movement.{movement}',$movement->id)}}" >Edit</a>
                                     </button>
+
+                                    <button class="btn btn-small btn-success pull-right" > 
+                                    <a href="{{route('/document/{movement}/create',$account->id)}}">Create Document</a> 
+                                    </button> 
                                 </th>
                             </tr>
                         @endforeach
