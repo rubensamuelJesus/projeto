@@ -24,6 +24,7 @@ Route::view('register', 'register');*/
 Route::get('/','HomeController@index')->name('/');
 Route::get('/table','HomeController@index')->name('/');
 Route::get('/profiles', 'ProfilesController@index')->name('profiles');
+//Route::get('/profiles', 'ProfilesController@query_normal')->name('profiles');
 
 //Login routes
 Route::get('/login', 'Auth\LoginController@showLoginForm');
@@ -48,8 +49,8 @@ Route::post('/account', 'AccountController@store')->name('account');
 Route::get('/account', 'AccountController@index')->name('account');
 Route::get('/accounts/{user}', 'AccountController@accounts_user')->name('accounts/{user}')->middleware('CheckUserAuthentication');
 
-Route::get('/accounts/{user}/opened', 'AccountController@accounts_user_open')->name('accounts/{user}/opened')->middleware('CheckUserAuthentication');
-Route::get('/accounts/{user}/closed', 'AccountController@accounts_user_closed')->name('accounts/{user}/closed')->middleware('CheckUserAuthentication');
+Route::get('/accounts/{user}/opened', 'AccountController@accounts_user_open')->name('accounts.{user}.opened')->middleware('CheckUserAuthentication');
+Route::get('/accounts/{user}/closed', 'AccountController@accounts_user_closed')->name('accounts.{user}.closed')->middleware('CheckUserAuthentication');
 
 
 Route::patch('/account/{account}/close', 'AccountController@account_user_close')->middleware('CheckUserAuthentication');
@@ -72,11 +73,11 @@ Route::delete('/movement/{movement}', 'MovementController@delete')->name('moveme
 
 //rotas admin 
 //Route::get('/users','ProfilesController@index')->middleware('admin');
-Route::get('/users','AdminController@index')->name('users');
-Route::patch('/users/{user}/block','AdminController@block')->name('users.{user}.block');
-Route::patch('/users/{user}/unblock','AdminController@unblock')->name('users.{user}.unblock');
-Route::patch('/users/{user}/promote','AdminController@promote')->name('users.{user}.promote');
-Route::patch('/users/{user}/demote','AdminController@demote')->name('users.{user}.demote');
+Route::get('/users','ProfilesController@query_normal')->name('users');
+Route::patch('/users/{user}/block','AdminController@block')->name('users.{user}.block')->middleware('IsAdmin');
+Route::patch('/users/{user}/unblock','AdminController@unblock')->name('users.{user}.unblock')->middleware('IsAdmin');
+Route::patch('/users/{user}/promote','AdminController@promote')->name('users.{user}.promote')->middleware('IsAdmin');
+Route::patch('/users/{user}/demote','AdminController@demote')->name('users.{user}.demote')->middleware('IsAdmin');
 
 
 
@@ -110,3 +111,9 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::patch('/me/password', 'MeController@updatePass')->name('me.password');
+
+Route::post('/documents/{movement}','AdminController@store')->name('documents.{movement}');
+Route::get('/document/{movement}/create','AdminController@create')->name('documents.{movement}.create');
+Route::delete('/document/{document}','AdminController@delte')->name('document.{document}');
+Route::get('/document/{document}','AdminController@index')->name('document.{document}');
+

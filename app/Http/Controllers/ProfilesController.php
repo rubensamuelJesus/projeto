@@ -94,4 +94,21 @@ class ProfilesController extends Controller
         return view('profiles', compact('users_all','user','associated_members','associated_members_belong'));
        
     }
+
+    public function query_normal(Request $request)
+    {
+        $query_users = User::select()
+                ->where('name', 'like', '%'.$request->name.'%')
+                ->get(); 
+        return view('profiles', compact('query_users'));
+    
+    }
+    
+    public function query_admin()
+    {
+        
+
+        return view('profiles', compact('users_all','user','associated_members','associated_members_belong'));
+       
+    }
 }
