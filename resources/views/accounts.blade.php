@@ -50,6 +50,17 @@
                                     <button class="btn btn-small btn-success pull-right" > 
                                     <a href="{{route('movements.{account}',$account->id)}}">View Movment</a> 
                                     </button> 
+
+                                    <button class="btn btn-small btn-success pull-right" > 
+                                    <a href="{{route('/document/{movement}/create',$account->id)}}">Create Document</a> 
+                                    </button> 
+
+
+
+                                    <a href="{{route('accounts/{user}/opened',Auth::user()->id)}}" class="topicos">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Accounts open</p>
+                    </a>
                                 </th>
                                 
                             </tr>
