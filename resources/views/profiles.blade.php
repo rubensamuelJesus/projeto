@@ -22,11 +22,11 @@
         </li>
         <li>
             <nav class="navbar navbar-light bg-light right">
-                <form method="GET" action="/users">
-                    <input class="form-control mr-sm-2" name = "name" placeholder="Search" aria-label="Search">
+                <form method="GET" action="/profiles">
+                    <input class="form-control mr-sm-2" name = "name" placeholder="Name" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
-
+        </li>
             </nav>
         </li>
     </ul>
@@ -321,9 +321,10 @@
                                     @admin
                                     <th>{{$user->email}}</th>
                                     @endadmin
-                                    @admin<th>
+                                    <th>
                                         @if($user->blocked)
                                             {{'blocked'}}
+                                             @admin
                                             <th>
                                                 <form method="POST" action="/users/{{$user->id}}/unblock">
                                                     {{ csrf_field() }}
@@ -331,6 +332,7 @@
                                                     <button class="btn btn-small btn-success" type="submit">Unblock</button>
                                                 </form>
                                             </th>
+                                            @endadmin
                                         @else
                                             {{'available'}}
                                             <th>
@@ -345,6 +347,7 @@
 
                                         <th>@if($user->admin)
                                             {{'Admin'}}
+                                            @admin
                                             <th>
                                                 <form method="POST" action="/users/{{$user->id}}/demote">
                                                     {{ csrf_field() }}
@@ -352,8 +355,10 @@
                                                     <button class="pull-left btn btn-small btn-info " type="submit">Demote</button>
                                                 </form>
                                             </th>
+                                            @endadmin
                                         @else
                                             {{'Normal'}}
+                                            @admin
                                             <th>
                                                 <form method="POST" action="/users/{{$user->id}}/promote">
                                                     {{ csrf_field() }}
@@ -361,10 +366,9 @@
                                                     <button class="pull-left btn btn-small btn-success" type="submit">Promote</button>
                                                 </form>
                                             </th>
-
+                                            @endadmin
                                         @endif
                                         </th>
-                                    @endadmin
                                 </tr>
                             @endforeach
                         @else

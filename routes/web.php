@@ -23,7 +23,7 @@ Route::view('register', 'register');*/
 
 Route::get('/','HomeController@index')->name('/');
 Route::get('/table','HomeController@index')->name('/');
-Route::get('/profiles', 'ProfilesController@index')->name('profiles');
+Route::get('/profiles', 'ProfilesController@query_normal')->name('profiles');
 //Route::get('/profiles', 'ProfilesController@query_normal')->name('profiles');
 
 //Login routes
@@ -73,11 +73,12 @@ Route::delete('/movement/{movement}', 'MovementController@delete')->name('moveme
 
 //rotas admin 
 //Route::get('/users','ProfilesController@index')->middleware('admin');
-Route::get('/users','ProfilesController@query_normal')->name('users');
-Route::patch('/users/{user}/block','AdminController@block')->name('users.{user}.block')->middleware('IsAdmin');
-Route::patch('/users/{user}/unblock','AdminController@unblock')->name('users.{user}.unblock')->middleware('IsAdmin');
-Route::patch('/users/{user}/promote','AdminController@promote')->name('users.{user}.promote')->middleware('IsAdmin');
-Route::patch('/users/{user}/demote','AdminController@demote')->name('users.{user}.demote')->middleware('IsAdmin');
+
+//Route::get('/users','ProfilesController@query_normal')->name('users');
+Route::patch('/users/{user}/block','AdminController@block')->name('users.{user}.block');
+Route::patch('/users/{user}/unblock','AdminController@unblock')->name('users.{user}.unblock');
+Route::patch('/users/{user}/promote','AdminController@promote')->name('users.{user}.promote') ;
+Route::patch('/users/{user}/demote','AdminController@demote')->name('users.{user}.demote') ;
 
 
 

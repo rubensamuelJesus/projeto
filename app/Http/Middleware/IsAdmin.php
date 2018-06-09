@@ -16,13 +16,19 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        $user_pedido = $request->route('user');
+        //$user_pedido = $request->route('user');
+        if (Auth::user() &&  Auth::user()->admin == 1) {
+                return $next($request);
+         }
+        return redirect('/');
 
+
+/*
          if (Auth::()!=$user_pedido->id &&  Auth::user()->admin == 1) {
                 return response('Unauthorized',401);
          }
                 return response('Unauthorized',401);
-
+*/
         //return $next($request);
     }
 
