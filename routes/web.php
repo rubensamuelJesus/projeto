@@ -118,3 +118,4 @@ Route::get('/document/{movement}/create','AdminController@create')->name('docume
 Route::delete('/document/{document}','AdminController@delte')->name('document.{document}');
 Route::get('/document/{document}','AdminController@index')->name('document.{document}');
 
+Route::get('/dashboard/{user}','DashboardController@chart')->name('dashboard.{user}');

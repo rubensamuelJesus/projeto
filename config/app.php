@@ -160,6 +160,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class
 
@@ -215,7 +217,9 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 
+        'Chart' =>ConsoleTVs\Charts\ChartsServiceProvider::class,
         'Image' => Intervention\Image\Facades\Image::class
+        
 
     ],
 
