@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Movement;
+use App\Document;
+use File;
 
 class DocumentController extends Controller
 {
-    public function __construct()
-    {
-       $this->middleware('auth');
-    }
-
     public function index(Account $account)
     {
 		$movements = $account->movements;
@@ -24,8 +22,7 @@ class DocumentController extends Controller
      */
     public function create(Movement $movement)
     {
-    	return $movement;
-        return view('movement', compact('account'));
+        return view('document_create', compact('movement'));
     }
 
     /**
@@ -36,42 +33,36 @@ class DocumentController extends Controller
      */
     public function store(Request $request, Movement $movement)
     {
-    	return $movement;
-        $user = null;
-        $user = Auth::user();
-        $start_balance_antes_de_criar_movimento = $account->current_balance;
+    	
+        //$user = null;
+        //$user = Auth::user();
         $credentials = $this->validate(request(),[
-            'type' => 'required',
-            'date' => 'required',
-            'category' => 'required',/*'required|string|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',*/
-            'description' => 'required|string',
-            'value' => 'string',
+            'document_file' => 'required',
+            'document_description' => 'required',
         ]);
-        $account_type_id = Account_types::where('name', request('account_type'))->first(); 
-        if ( strcasecmp( $request->type, 'Revenue') == 0 ){
-            $end_balance = $account->current_balance + $request->value;
-            $account->current_balance =  $account->current_balance + $request->value;
+        $extensao = null;
+        if($request->hasFile('document_file')){
+            $document_file = $request->file('document_file');
+            $filename = 'invoice.' . $document_file->getClientOriginalExtension();
+            $extensao = $document_file->getClientOriginalExtension();
         }
-        else{
-            $end_balance = $account->current_balance - $request->value;
-            $account->current_balance =  $account->current_balance - $request->value;
-        }
-
-
-        $movement_id = Movement_categories::where('name', request('category'))->first();
-
         //$account->save();
-        $movement = Movement::create([
-            'account_id' => $account->id,
-            'type' => $request->type,
-            'date' => $request->date,
-            'start_balance' => $start_balance_antes_de_criar_movimento,
-            'end_balance' => $end_balance,
-            'movement_category_id' => $movement_id->id,
-            'description' => $request->description,
-            'value' => $request->value,
+        $document = Document::create([
+            'description' => $request->document_description,
+            'original_name' => $filename,
+            //'type' => $extensao,
             'created_at' => date('Y-m-d H:i:s'),
         ]);
+        $account_do_movemnt = $movement->account;
+        $movement->document_id = $document->id;
+        $movement->save();
+
+        return $account_do_movemnt;
+        File::makeDirectory(storage_path('app/documents/'. $account->id));
+        return $account->id;
+        
+
+        return $movement;
     }
 
     /**

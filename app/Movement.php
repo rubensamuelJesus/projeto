@@ -16,7 +16,7 @@ class Movement extends Model
 
 
 	protected $fillable = [
-        'date', 'type', 'category', 'description', 'value','account_id','movement_category_id','start_balance','end_balance','created_at'
+        'date','document_id', 'type', 'category', 'description', 'value','account_id','movement_category_id','start_balance','end_balance','created_at'
     ];
 
 	public function account(){

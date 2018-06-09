@@ -9,13 +9,10 @@ use App\Movement;
 use App\Movement_categories;
 use Illuminate\Support\Facades\Auth;
 
+
+
 class MovementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function __construct()
     {
        $this->middleware('auth');

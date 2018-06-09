@@ -55,7 +55,7 @@
 
 
 
-                                    <a href="{{route('accounts/{user}/opened',Auth::user()->id)}}" class="topicos">
+                                    <a href="{{route('accounts.{user}.opened',Auth::user()->id)}}" class="topicos">
                         <i class="ti-view-list-alt"></i>
                         <p>Accounts open</p>
                     </a>
