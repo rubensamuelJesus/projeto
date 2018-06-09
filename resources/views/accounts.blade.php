@@ -51,9 +51,7 @@
                                     <a href="{{route('movements.{account}',$account->id)}}">View Movment</a> 
                                     </button> 
 
-                                    <button class="btn btn-small btn-success pull-right" > 
-                                    <a href="{{route('/document/{movement}/create',$account->id)}}">Create Document</a> 
-                                    </button> 
+                                    
 
 
 

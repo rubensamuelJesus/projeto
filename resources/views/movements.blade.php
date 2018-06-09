@@ -7,9 +7,13 @@
                 <button> 
                     <a href="/movements/{{$account->id}}/create">Create Movment</a> 
                 </button>
+                
                 @if(!$movements == null)
                     <thead>
                         <tr>
+                            <th>
+                                ID
+                            </th>
                             <th>
                                 Category                        
                             </th>
@@ -35,6 +39,7 @@
                     @if(!$movements == null)
                         @foreach ($movements as $movement)
                             <tr>
+                                <th>{{$movement->id}}</th>
                                 <th>{{$movement->movement_categorie->name}}</th>
                                 <th>{{$movement->date}}</th>
                                 <th>{{$movement->value}}</th>
@@ -50,6 +55,10 @@
                                     <button class="btn btn-small btn-info pull-right" > 
                                     <a href="{{route('movement.{movement}',$movement->id)}}" >Edit</a>
                                     </button>
+
+                                    <button class="btn btn-small btn-success pull-right" > 
+                                    <a href="{{route('documents.{movement}.create',$movement->id)}}">Create Document</a> 
+                                    </button> 
                                 </th>
                             </tr>
                         @endforeach

@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             @if($errors->all())
-                                @foreach($errors->all() as $error)
+                                @foreach($errors as $error)
                                     <div class="text-center">
                                         <span class="invalid-feedback">
                                         <strong>{{$error}}<br></strong>

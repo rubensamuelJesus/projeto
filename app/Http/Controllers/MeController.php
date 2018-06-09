@@ -16,11 +16,7 @@ use Image;
 
 class MeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function __construct()
     {
         $this->middleware('auth');
@@ -103,58 +99,6 @@ class MeController extends Controller
         }
         return view('me.associates-of', compact('user','associated_members_belong'));
     }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -216,27 +160,14 @@ class MeController extends Controller
         return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function updatePass(Request $request)
     {
         $user = Auth::user();
-
         $credentials = $this->validate(request(),[
             'oldpassword' => 'required|string',
             'newpassword' => 'required|string|min:6',
             'confirmpassword' => 'required|string',
         ]);
-
         $old_pass = $user->password;
         $old_form = request('oldpassword');
         $new_pass = request('newpassword');

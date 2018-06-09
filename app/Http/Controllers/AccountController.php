@@ -9,6 +9,11 @@ use App\Home;
 use Session;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use App\Associate_members;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
@@ -144,9 +149,6 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $e = "ya";
-        $arrErrors[0] = $e;
-        $request->session()->put('errors', $arrErrors);
 
         $credentials = $this->validate(request(),[
             'account_type' => 'required',

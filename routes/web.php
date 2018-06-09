@@ -113,9 +113,9 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::patch('/me/password', 'MeController@updatePass')->name('me.password');
 
-Route::post('/documents/{movement}','AdminController@store')->name('documents.{movement}');
-Route::get('/document/{movement}/create','AdminController@create')->name('documents.{movement}.create');
-Route::delete('/document/{document}','AdminController@delte')->name('document.{document}');
-Route::get('/document/{document}','AdminController@index')->name('document.{document}');
+Route::post('/documents/{movement}','DocumentController@store')->name('documents.{movement}');
+Route::get('/document/{movement}/create','DocumentController@create')->name('documents.{movement}.create');
+Route::delete('/document/{document}','DocumentController@delte')->name('document.{document}');
+Route::get('/document/{document}','DocumentController@index')->name('document.{document}');
 
 Route::get('/dashboard/{user}','DashboardController@chart')->name('dashboard.{user}');
