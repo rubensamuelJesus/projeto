@@ -149,9 +149,6 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $e = "ya";
-        $arrErrors[0] = $e;
-        $request->session()->put('errors', $arrErrors);
 
         $credentials = $this->validate(request(),[
             'account_type' => 'required',
